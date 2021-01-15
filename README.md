@@ -1,2 +1,2 @@
-# StegWare-ControlPanel
+# StegWare-Dashboard
 Control Panel for StegWare-Backend
