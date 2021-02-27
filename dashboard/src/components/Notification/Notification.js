@@ -119,4 +119,4 @@ function Notification({ variant, ...props }) {
 	);
 }
 
-export { Notification }
+export default Notification

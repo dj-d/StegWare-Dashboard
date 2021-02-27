@@ -6,7 +6,7 @@ import useStyles from "./styles";
 // component
 import { Typography } from "../Wrappers/Wrappers";
 
-export default function PageTitle(props) {
+function PageTitle(props) {
 	let classes = useStyles();
 
 	return (
@@ -19,3 +19,5 @@ export default function PageTitle(props) {
 		</div>
 	);
 }
+
+export default PageTitle
