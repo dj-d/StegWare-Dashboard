@@ -26,4 +26,4 @@ function UserAvatar({ color = "primary", ...props }) {
 	);
 }
 
-export { UserAvatar }
+export default UserAvatar
