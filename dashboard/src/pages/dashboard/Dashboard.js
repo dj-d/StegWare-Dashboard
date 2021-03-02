@@ -69,8 +69,7 @@ export default function Dashboard() {
 												   {value: 18},
 											   ]}
 									>
-										<Line type="natural" dataKey="value" stroke={theme.palette.success.main}
-											  strokeWidth={2} dot={false}/>
+										<Line type="natural" dataKey="value" stroke={theme.palette.success.main} strokeWidth={2} dot={false}/>
 									</LineChart>
 								</Grid>
 							</Grid>
@@ -98,27 +97,23 @@ export default function Dashboard() {
 					</Widget>
 				</Grid>
 				<Grid item lg={3} md={8} sm={6} xs={12}>
-					<Widget title="App Performance" upperTitle className={classes.card}
-							bodyClass={classes.fullHeightBody}>
+					<Widget title="App Performance" upperTitle className={classes.card} bodyClass={classes.fullHeightBody}>
 						<div className={classes.performanceLegendWrapper}>
 							<div className={classes.legendElement}>
 								<Dot color="warning"/>
-								<Typography color="text" colorBrightness="secondary"
-											className={classes.legendElementText}>
+								<Typography color="text" colorBrightness="secondary" className={classes.legendElementText}>
 									Integration
 								</Typography>
 							</div>
 							<div className={classes.legendElement}>
 								<Dot color="primary"/>
-								<Typography color="text" colorBrightness="secondary"
-											className={classes.legendElementText}>
+								<Typography color="text" colorBrightness="secondary" className={classes.legendElementText}>
 									SDK
 								</Typography>
 							</div>
 						</div>
 						<div className={classes.progressSection}>
-							<Typography size="md" color="text" colorBrightness="secondary"
-										className={classes.progressSectionTitle}>
+							<Typography size="md" color="text" colorBrightness="secondary" className={classes.progressSectionTitle}>
 								Integration
 							</Typography>
 							<LinearProgress variant="determinate" value={77}
@@ -126,57 +121,47 @@ export default function Dashboard() {
 											className={classes.progress}/>
 						</div>
 						<div>
-							<Typography size="md" color="text" colorBrightness="secondary"
-										className={classes.progressSectionTitle}>
+							<Typography size="md" color="text" colorBrightness="secondary" className={classes.progressSectionTitle}>
 								SDK
 							</Typography>
-							<LinearProgress variant="determinate" value={73}
-											classes={{barColorPrimary: classes.progressBarWarning}}
-											className={classes.progress}/>
+							<LinearProgress variant="determinate" value={73} classes={{barColorPrimary: classes.progressBarWarning}} className={classes.progress}/>
 						</div>
 					</Widget>
 				</Grid>
 				<Grid item lg={3} md={8} sm={6} xs={12}>
-					<Widget title="Server Overview" upperTitle className={classes.card}
-							bodyClass={classes.fullHeightBody}>
+					<Widget title="Server Overview" upperTitle className={classes.card} bodyClass={classes.fullHeightBody}>
 						<div className={classes.serverOverviewElement}>
-							<Typography color="text" colorBrightness="secondary"
-										className={classes.serverOverviewElementText} noWrap>
+							<Typography color="text" colorBrightness="secondary" className={classes.serverOverviewElementText} noWrap>
 								60% / 37°С / 3.3 Ghz
 							</Typography>
 							<div className={classes.serverOverviewElementChartWrapper}>
 								<ResponsiveContainer height={50} width="99%">
 									<AreaChart data={getRandomData(10)}>
-										<Area type="natural" dataKey="value" stroke={theme.palette.secondary.main}
-											  fill={theme.palette.secondary.light} strokeWidth={2} fillOpacity="0.25"/>
+										<Area type="natural" dataKey="value" stroke={theme.palette.secondary.main} fill={theme.palette.secondary.light} strokeWidth={2} fillOpacity="0.25"/>
 									</AreaChart>
 								</ResponsiveContainer>
 							</div>
 						</div>
 						<div className={classes.serverOverviewElement}>
-							<Typography color="text" colorBrightness="secondary"
-										className={classes.serverOverviewElementText} noWrap>
+							<Typography color="text" colorBrightness="secondary" className={classes.serverOverviewElementText} noWrap>
 								54% / 31°С / 3.3 Ghz
 							</Typography>
 							<div className={classes.serverOverviewElementChartWrapper}>
 								<ResponsiveContainer height={50} width="99%">
 									<AreaChart data={getRandomData(10)}>
-										<Area type="natural" dataKey="value" stroke={theme.palette.primary.main}
-											  fill={theme.palette.primary.light} strokeWidth={2} fillOpacity="0.25"/>
+										<Area type="natural" dataKey="value" stroke={theme.palette.primary.main} fill={theme.palette.primary.light} strokeWidth={2} fillOpacity="0.25"/>
 									</AreaChart>
 								</ResponsiveContainer>
 							</div>
 						</div>
 						<div className={classes.serverOverviewElement}>
-							<Typography color="text" colorBrightness="secondary"
-										className={classes.serverOverviewElementText} noWrap>
+							<Typography color="text" colorBrightness="secondary" className={classes.serverOverviewElementText} noWrap>
 								57% / 21°С / 3.3 Ghz
 							</Typography>
 							<div className={classes.serverOverviewElementChartWrapper}>
 								<ResponsiveContainer height={50} width="99%">
 									<AreaChart data={getRandomData(10)}>
-										<Area type="natural" dataKey="value" stroke={theme.palette.warning.main}
-											  fill={theme.palette.warning.light} strokeWidth={2} fillOpacity="0.25"/>
+										<Area type="natural" dataKey="value" stroke={theme.palette.warning.main} fill={theme.palette.warning.light} strokeWidth={2} fillOpacity="0.25"/>
 									</AreaChart>
 								</ResponsiveContainer>
 							</div>
