@@ -5,25 +5,23 @@ import { useTheme } from "@material-ui/styles";
 import useStyles from "./styles";
 
 // components
-import { Typography } from "../Wrappers/Wrappers";
+import { Typography } from "../Wrappers";
 
-function UserAvatar({ color = "primary", ...props }) {
-	let classes = useStyles();
-	let theme = useTheme();
+export default function UserAvatar({ color = "primary", ...props }) {
+  var classes = useStyles();
+  var theme = useTheme();
 
-	let letters = props.name
-		.split(" ")
-		.map(word => word[0])
-		.join("");
+  var letters = props.name
+    .split(" ")
+    .map(word => word[0])
+    .join("");
 
-	return (
-		<div
-			className={classes.avatar}
-			style={{ backgroundColor: theme.palette[color].main }}
-		>
-			<Typography className={classes.text}>{letters}</Typography>
-		</div>
-	);
+  return (
+    <div
+      className={classes.avatar}
+      style={{ backgroundColor: theme.palette[color].main }}
+    >
+      <Typography className={classes.text}>{letters}</Typography>
+    </div>
+  );
 }
-
-export default UserAvatar
