@@ -1,0 +1,6 @@
+{
+  "name": "InfectedDevice",
+  "version": "0.0.0",
+  "main": "InfectedDevice.js",
+  "private": true
+}

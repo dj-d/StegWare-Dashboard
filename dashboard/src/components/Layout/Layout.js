@@ -18,12 +18,10 @@ import Sidebar from "../Sidebar";
 
 // pages
 import Dashboard from "../../pages/dashboard";
-import Typography from "../../pages/typography";
-import Notifications from "../../pages/notifications";
-import Maps from "../../pages/maps";
-import Tables from "../../pages/tables";
-import Icons from "../../pages/icons";
-import Charts from "../../pages/charts";
+import Payload from "../../pages/payload/Payload";
+import Attack from "../../pages/attack";
+import InfectedDevice from "../../pages/infectedDevice";
+import Team from "../../pages/team";
 
 // context
 import {useLayoutState} from "../../context/LayoutContext";
@@ -43,22 +41,19 @@ function Layout(props) {
 					<div className={classes.fakeToolbar}/>
 					<Switch>
 						<Route path="/app/dashboard" component={Dashboard}/>
-						<Route path="/app/typography" component={Typography}/>
-						<Route path="/app/tables" component={Tables}/>
-						<Route path="/app/notifications" component={Notifications}/>
-						<Route exact path="/app/ui" render={() => <Redirect to="/app/ui/icons"/>}/>
-						<Route path="/app/ui/maps" component={Maps}/>
-						<Route path="/app/ui/icons" component={Icons}/>
-						<Route path="/app/ui/charts" component={Charts}/>
+						<Route path="/app/payload" component={Payload}/>
+						<Route path="/app/attack" component={Attack}/>
+						<Route path="/app/infectedDevice" component={InfectedDevice}/>
+						<Route path="/app/team" component={Team}/>
 					</Switch>
 					<Box mt={5} width={"100%"} display={"flex"} alignItems={"center"} justifyContent="space-between">
 						<div>
-							<Link color={'primary'} href={'https://flatlogic.com/about'} target={'_blank'} className={classes.link}>
-								About Us
+							<Link color={'primary'} href={'https://github.com/dj-d'} target={'_blank'} className={classes.link}>
+								GitHub Profile
 							</Link>
 						</div>
 						<div>
-							<Link href={'https://github.com/flatlogic'} target={'_blank'}>
+							<Link href={'https://github.com/dj-d'} target={'_blank'}>
 								<IconButton aria-label="github" style={{marginRight: -12}}>
 									<Icon path={GithubIcon} size={1} color="#6E6E6E99"/>
 								</IconButton>

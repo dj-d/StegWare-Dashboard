@@ -31,33 +31,31 @@ const structure = [
 	{
 		id: 1,
 		label: "Payloads",
-		link: "/app/typography",
-		icon: <PayloadsIcon/>,
+		link: "/app/payload",
+		icon: <PayloadsIcon/>
 	},
 	{
 		id: 2,
 		label: "Attacks",
-		link: "/app/tables",
+		link: "/app/attack",
 		icon: <AttacksIcon/>
 		},
 	{
 		id: 3,
 		label: "Infected devices",
-		link: "/app/notifications",
-		icon: <InfectedDevicesIcon/>,
+		link: "/app/infectedDevice",
+		icon: <InfectedDevicesIcon/>
 	},
 	{
 		id: 4,
 		label: "Team",
-		link: "/app/ui",
-		icon: <TeamIcon/>,
-		children: [
-			{label: "Icons", link: "/app/ui/icons"},
-			{label: "Charts", link: "/app/ui/charts"},
-			{label: "Maps", link: "/app/ui/maps"},
-		],
+		link: "/app/team",
+		icon: <TeamIcon/>
 	},
-	{id: 5, type: "divider"}
+	{
+		id: 5,
+		type: "divider"
+	}
 ];
 
 function Sidebar({location}) {
