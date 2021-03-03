@@ -8,7 +8,7 @@ import useStyles from "./styles";
 import PageTitle from "../../components/PageTitle";
 import Widget from "../../components/Widget";
 
-function PayloadPage() {
+function InfectedDevicePage() {
 	let classes = useStyles();
 
 	return (
