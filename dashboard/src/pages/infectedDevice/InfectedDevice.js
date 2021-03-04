@@ -18,4 +18,4 @@ function InfectedDevicePage() {
 	)
 }
 
-export default PayloadPage;
+export default InfectedDevicePage;

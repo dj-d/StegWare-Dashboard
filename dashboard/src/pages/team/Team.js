@@ -18,4 +18,4 @@ function TeamPage() {
 	)
 }
 
-export default PayloadPage;
+export default TeamPage;

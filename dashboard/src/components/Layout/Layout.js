@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Switch, Redirect, withRouter} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import classnames from "classnames";
 import {Box, IconButton, Link} from '@material-ui/core'
 import Icon from '@mdi/react'
@@ -19,9 +19,9 @@ import Sidebar from "../Sidebar";
 // pages
 import Dashboard from "../../pages/dashboard";
 import Payload from "../../pages/payload/Payload";
-import Attack from "../../pages/attack";
-import InfectedDevice from "../../pages/infectedDevice";
-import Team from "../../pages/team";
+import Attack from "../../pages/attack/Attack";
+import InfectedDevice from "../../pages/infectedDevice/InfectedDevice"
+import Team from "../../pages/team/Team";
 
 // context
 import {useLayoutState} from "../../context/LayoutContext";

@@ -18,4 +18,4 @@ function AttackPage() {
 	)
 }
 
-export default PayloadPage;
+export default AttackPage;
