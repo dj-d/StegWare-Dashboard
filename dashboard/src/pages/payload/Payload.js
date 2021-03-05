@@ -7,6 +7,7 @@ import useStyles from "./styles";
 // component
 import PageTitle from "../../components/PageTitle";
 import Widget from "../../components/Widget";
+import PayloadService from "../../services/PayloadService";
 
 function PayloadPage() {
 	let classes = useStyles();
@@ -16,12 +17,11 @@ function PayloadPage() {
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
-		fetch("http://192.168.0.246:9999/api/payload")
-			.then(res => res.json())
+		PayloadService.fetchPayloads()
 			.then(
-				(result) => {
+				(res) => {
 					setIsLoaded(true);
-					setItems(result);
+					setItems(res.data);
 				},
 				// Note: it's important to handle errors here
 				// instead of a catch() block so that we don't swallow
