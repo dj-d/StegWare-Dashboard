@@ -8,6 +8,7 @@ import useStyles from "./styles";
 import PageTitle from "../../components/PageTitle";
 import Widget from "../../components/Widget";
 import PayloadService from "../../services/PayloadService";
+import {Typography} from "../../components/Wrappers";
 
 function PayloadPage() {
 	let classes = useStyles();
@@ -39,13 +40,23 @@ function PayloadPage() {
 		return <div>Loading...</div>;
 	} else {
 		return (
-			<ul>
-				{items.map(item => (
-					<li key={item._id}>
-						{item.name}
-					</li>
-				))}
-			</ul>
+			<>
+				<PageTitle title="Payload"/>
+
+				<Grid container spacing={4}>
+					{items.map(item => (
+						<Grid item lg={3} md={4} sm={6} xs={12}>
+							<Widget title={item.name} upperTitle bodyClass={classes.fullHeightBody} className={classes.card} resultType={item.resultType}>
+								<div className={classes.visitsNumberContainer}>
+									<Typography>
+										{item.description}
+									</Typography>
+								</div>
+							</Widget>
+						</Grid>
+					))}
+				</Grid>
+			</>
 		);
 	}
 }
