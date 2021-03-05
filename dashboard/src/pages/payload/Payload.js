@@ -41,7 +41,7 @@ function PayloadPage() {
 	} else {
 		return (
 			<>
-				<PageTitle title="Payload"/>
+				<PageTitle title="Payloads"/>
 
 				<Grid container spacing={4}>
 					{items.map(item => (
