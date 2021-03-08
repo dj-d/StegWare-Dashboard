@@ -13,6 +13,13 @@ export default function Widget({children, title, noBodyPadding, bodyClass, disab
 	let [moreButtonRef, setMoreButtonRef] = useState(null);
 	let [isMoreMenuOpen, setMoreMenuOpen] = useState(false);
 
+	const [open, setOpen] = useState(false);
+
+	const handleClickChange = () => {
+		setOpen(!open)
+		props.isOpen(open)
+	}
+
 	return (
 		<div className={classes.widgetWrapper} style={style && {...style}}>
 			<Paper className={classes.paper} classes={{
@@ -56,7 +63,7 @@ export default function Widget({children, title, noBodyPadding, bodyClass, disab
 				</div>
 			</Paper>
 			<Menu id="widget-menu" open={isMoreMenuOpen} anchorEl={moreButtonRef} onClose={() => setMoreMenuOpen(false)} disableAutoFocusItem>
-				<MenuItem>
+				<MenuItem onClick={() => handleClickChange()}>
 					<Typography>Detail</Typography>
 				</MenuItem>
 				<MenuItem>
