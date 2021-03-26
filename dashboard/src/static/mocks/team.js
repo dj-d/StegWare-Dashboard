@@ -5,6 +5,7 @@ import coSupervisor from "../images/team/Co-Supervisor.jpg";
 const team = [
 	{
 		name: "Ing. Francesco Mercaldo",
+		description: "Supervisor",
 		image: supervisor,
 		social: {
 			github: "https://github.com/FrancescoMercaldo",
@@ -14,6 +15,7 @@ const team = [
 	},
 	{
 		name: "Dott.ssa Rosangela Casolare",
+		description: "Co-Supervisor",
 		image: coSupervisor,
 		social: {
 			github: "",
@@ -23,6 +25,7 @@ const team = [
 	},
 	{
 		name: "Daniele Albanese",
+		description: "Developer",
 		image: developer,
 		social: {
 			github: "http://github.com/dj-d",

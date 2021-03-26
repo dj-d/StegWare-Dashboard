@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/styles";
 
-export default makeStyles({
+export default makeStyles(theme => ({
 	card: {
 		display: "block",
 		margin: 5,
@@ -24,9 +24,13 @@ export default makeStyles({
 	title: {
 		fontWeight: "bold",
 	},
+	description: {
+		textTransform: "uppercase",
+		marginTop: theme.spacing(2)
+	},
 	cardLink: {
 		align: "center"
 	},
 	icon: {
 	}
-});
+}));

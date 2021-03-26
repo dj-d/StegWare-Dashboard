@@ -19,8 +19,12 @@ export default function CardComponent({user}) {
 
 				<CardContent className={classes.content}>
 					<div className={classes.cardText}>
-						<Typography align="center" variant="h3" className={classes.title}>
+						<Typography align="center" variant="h3" color="textPrimary" className={classes.title}>
 							{user.name}
+						</Typography>
+
+						<Typography align="center" variant="body1" color="textSecondary" className={classes.description}>
+							{user.description}
 						</Typography>
 					</div>
 
