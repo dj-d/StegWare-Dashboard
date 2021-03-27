@@ -14,7 +14,7 @@ export default function TeamPage() {
 
             <Grid container={true} spacing={4} justify="center">
                 {team_data.map(user => (
-                    <Grid item lg={3} md={4} sm={6} xs={12}>
+                    <Grid key={user.name} item lg={3} md={4} sm={6} xs={12}>
                         <UserCard user={user}/>
                     </Grid>
                 ))}
