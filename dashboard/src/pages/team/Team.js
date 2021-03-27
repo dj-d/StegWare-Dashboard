@@ -1,26 +1,24 @@
 import React from "react";
-import {Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 // component
 import PageTitle from "../../components/PageTitle";
-import CardComponent from "../../components/Card/CardComponent";
+import UserCard from "../../components/UserCard/UserCard";
 
 import team_data from "../../static/mocks/team";
 
-function TeamPage() {
-	return (
-		<>
-			<PageTitle title="Team"/>
+export default function TeamPage() {
+    return (
+        <>
+            <PageTitle title="Team"/>
 
-			<Grid container={true} spacing={4} justify="center">
-				{team_data.map(user => (
-					<Grid item lg={3} md={4} sm={6} xs={12}>
-						<CardComponent user={user} />
-					</Grid>
-				))}
-			</Grid>
-		</>
-	);
+            <Grid container={true} spacing={4} justify="center">
+                {team_data.map(user => (
+                    <Grid item lg={3} md={4} sm={6} xs={12}>
+                        <UserCard user={user}/>
+                    </Grid>
+                ))}
+            </Grid>
+        </>
+    );
 }
-
-export default TeamPage;
