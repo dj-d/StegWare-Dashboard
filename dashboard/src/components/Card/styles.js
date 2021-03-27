@@ -23,7 +23,6 @@ export default makeStyles(theme => ({
 		marginBottom: 15,
 	},
 	title: {
-		fontWeight: "bold",
 	},
 	description: {
 		textTransform: "uppercase",
