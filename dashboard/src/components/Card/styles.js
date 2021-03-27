@@ -5,6 +5,7 @@ export default makeStyles(theme => ({
 		display: "block",
 		margin: 5,
 		borderRadius: 10,
+		boxShadow: theme.customShadows.widget,
 	},
 	media: {
 		width: "auto",
