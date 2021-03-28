@@ -1,73 +1,76 @@
-import React, {useEffect, useState} from "react";
-import {Grid} from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Grid } from "@material-ui/core";
+import Skeleton from '@material-ui/lab/Skeleton';
 
 // styles
 import useStyles from "./styles";
 
 // component
 import PageTitle from "../../components/PageTitle";
-import Widget from "../../components/Widget";
+import PayloadCard from "../../components/PayloadCard/PayloadCard";
+
+// service
 import PayloadService from "../../services/PayloadService";
-import {Typography} from "../../components/Wrappers";
-import Detail from "../../components/Payload/Detail";
 
 function PayloadPage() {
-	let classes = useStyles();
+    let classes = useStyles();
 
-	const [error, setError] = useState(null);
-	const [isLoaded, setIsLoaded] = useState(false);
-	const [items, setItems] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [payloads, setPayloads] = useState([]);
 
-	const [open, setOpen] = useState(false);
+    const value = ["", "", "", "", "", "", "", ""];
 
-	const handleClick = (val) => {
-		setOpen(val);
-	}
+    useEffect(() => {
+        PayloadService.fetchPayloads()
+            .then(
+                (res) => {
+                    setIsLoaded(true);
+                    setPayloads(res.data);
+                },
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
+    });
 
-	useEffect(() => {
-		PayloadService.fetchPayloads()
-			.then(
-				(res) => {
-					setIsLoaded(true);
-					setItems(res.data);
-				},
-				// Note: it's important to handle errors here
-				// instead of a catch() block so that we don't swallow
-				// exceptions from actual bugs in components.
-				(error) => {
-					setIsLoaded(true);
-					setError(error);
-				}
-			)
-	}, [])
+    // TODO: To improve error and isLoaded
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+        return (
+            <>
+                <PageTitle title="Payloads"/>
 
-	if (error) {
-		return <div>Error: {error.message}</div>;
-	} else if (!isLoaded) {
-		return <div>Loading...</div>;
-	} else {
-		return (
-			<>
-				<PageTitle title="Payloads"/>
+                <Grid container spacing={4}>
+                    {value.map((item, index) => (
+                        <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+                            <Skeleton
+                                variant="rect"
+                                animation="wave"
+                                width={350}
+                                height={200}/>
+                        </Grid>
+                    ))}
+                </Grid>
+            </>
+        )
+    } else {
+        return (
+            <>
+                <PageTitle title="Payloads"/>
 
-				<Grid container spacing={4}>
-					{items.map(item => (
-						<Grid item lg={3} md={4} sm={6} xs={12}>
-							<Widget title={item.name} upperTitle bodyClass={classes.fullHeightBody} className={classes.card} resultType={item.resultType} isOpen={handleClick}>
-								<div className={classes.visitsNumberContainer}>
-									<Typography>
-										{item.description}
-									</Typography>
-								</div>
-							</Widget>
-						</Grid>
-					))}
-				</Grid>
-
-				{open ? <Detail toggle={open} /> : null}
-			</>
-		);
-	}
+                <Grid container spacing={4}>
+                    {payloads.map(payload => (
+                        <Grid key={payload.name} item lg={3} md={4} sm={6} xs={12}>
+                            <PayloadCard payload={payload}/>
+                        </Grid>
+                    ))}
+                </Grid>
+            </>
+        );
+    }
 }
 
 export default PayloadPage;
