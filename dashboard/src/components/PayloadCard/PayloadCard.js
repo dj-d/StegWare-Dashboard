@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Card, CardActions, CardHeader, Divider } from "@material-ui/core";
+
+import Delete from "../PayloadAction/Delete/Delete";
 
 // icons
 import {
@@ -13,8 +15,20 @@ import useStyles from "./styles";
 export default function PayloadCard({ payload }) {
     let classes = useStyles();
 
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [placement, setPlacement] = useState();
+
+    const handleClick = (newPlacement) => (event) => {
+        setAnchorEl(event.currentTarget);
+        setOpen((prev) => placement !== newPlacement || !prev);
+        setPlacement(newPlacement);
+    }
+
     return (
         <>
+            <Delete anchorEl={anchorEl} open={open} placement={placement} />
+
             <Card className={classes.card}>
                 <CardHeader
                     title={payload.name}
@@ -26,7 +40,7 @@ export default function PayloadCard({ payload }) {
                     }}
                 />
 
-                <Divider variant="middle" />
+                <Divider variant="middle"/>
 
                 <CardActions className={classes.action}>
                     <Button
@@ -43,6 +57,7 @@ export default function PayloadCard({ payload }) {
                         variant="contained"
                         color="secondary"
                         startIcon={<DeleteIcon/>}
+                        onClick={handleClick('bottom')}
                         className={classes.button}
                     >
                         Delete
