@@ -23,7 +23,7 @@ export default function Delete({ anchorEl, open, placement, ...props }) {
                 <Paper className={classes.paper}>
                     <Typography className={classes.title}>Are you sure?</Typography>
 
-                    <Button onClick={changeVisibility} className={classes.buttonCancel}>
+                    <Button autoFocus onClick={changeVisibility} className={classes.buttonCancel}>
                         NO
                     </Button>
                     <Button className={classes.buttonContinue}>
