@@ -25,9 +25,13 @@ export default function PayloadCard({ payload }) {
         setPlacement(newPlacement);
     }
 
+    function changeDeleteVisibility (newValue) {
+        setOpen(newValue);
+    }
+
     return (
         <>
-            <Delete anchorEl={anchorEl} open={open} placement={placement} />
+            <Delete anchorEl={anchorEl} open={open} placement={placement} deleteVisibility={changeDeleteVisibility} />
 
             <Card className={classes.card}>
                 <CardHeader

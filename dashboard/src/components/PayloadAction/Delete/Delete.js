@@ -4,8 +4,12 @@ import { Button, Paper, Popper, Typography } from "@material-ui/core";
 // styles
 import useStyles from "./styles";
 
-export default function Delete({ anchorEl, open, placement }) {
+export default function Delete({ anchorEl, open, placement, ...props }) {
     const classes = useStyles();
+
+    function changeVisibility(event) {
+        props.deleteVisibility(event.target.value)
+    }
 
     return (
         <>
@@ -19,7 +23,7 @@ export default function Delete({ anchorEl, open, placement }) {
                 <Paper className={classes.paper}>
                     <Typography className={classes.title}>Are you sure?</Typography>
 
-                    <Button className={classes.buttonCancel}>
+                    <Button onClick={changeVisibility} className={classes.buttonCancel}>
                         NO
                     </Button>
                     <Button className={classes.buttonContinue}>
