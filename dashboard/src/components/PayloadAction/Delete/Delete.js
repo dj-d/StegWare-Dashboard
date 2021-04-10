@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Paper, Popper, Typography } from "@material-ui/core";
 
 // styles
 import useStyles from "./styles";
+import PayloadService from "../../../services/PayloadService";
 
 export default function Delete({ anchorEl, open, placement, ...props }) {
     const classes = useStyles();
 
+    let [errorToastID, setErrorToastID] = useState(null);
+
     function changeVisibility(event) {
         props.deleteVisibility(event.target.value)
+    }
+
+    function deleteAction() {
+        PayloadService.deletePayload(props.payloadID)
+            .then()
+            .catch()
+            .finally()
+    }
+
+    function handleNotification(notificationType) {
+        let componentProps;
+
+        if (errorToastID && notificationType === "error")
+            return;
+
+        componentProps = {
+
+        }
     }
 
     return (
@@ -26,7 +47,7 @@ export default function Delete({ anchorEl, open, placement, ...props }) {
                     <Button autoFocus onClick={changeVisibility} className={classes.buttonCancel}>
                         NO
                     </Button>
-                    <Button className={classes.buttonContinue}>
+                    <Button onClick={deleteAction} className={classes.buttonContinue}>
                         YES
                     </Button>
                 </Paper>
