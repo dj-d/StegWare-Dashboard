@@ -23,16 +23,15 @@ function PayloadPage() {
 
     useEffect(() => {
         PayloadService.fetchPayloads()
-            .then(
-                (res) => {
+            .then((res) => {
                     setIsLoaded(true);
                     setPayloads(res.data);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
                 }
             )
+            .catch((error) => {
+                setIsLoaded(true);
+                setError(error);
+            })
     });
 
     // TODO: To improve error and isLoaded

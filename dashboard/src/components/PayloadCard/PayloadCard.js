@@ -31,7 +31,7 @@ export default function PayloadCard({ payload }) {
 
     return (
         <>
-            <Delete anchorEl={anchorEl} open={open} placement={placement} deleteVisibility={changeDeleteVisibility} />
+            <Delete anchorEl={anchorEl} open={open} placement={placement} deleteVisibility={changeDeleteVisibility} payloadID={payload._id} />
 
             <Card className={classes.card}>
                 <CardHeader
