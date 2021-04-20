@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 import Skeleton from '@material-ui/lab/Skeleton';
 
-// styles
-import useStyles from "./styles";
-
 // component
 import PageTitle from "../../components/PageTitle";
 import PayloadCard from "../../components/PayloadCard/PayloadCard";
@@ -13,8 +10,6 @@ import PayloadCard from "../../components/PayloadCard/PayloadCard";
 import PayloadService from "../../services/PayloadService";
 
 function PayloadPage() {
-    let classes = useStyles();
-
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [payloads, setPayloads] = useState([]);
@@ -22,22 +17,24 @@ function PayloadPage() {
     const value = ["", "", "", "", "", "", "", ""];
 
     useEffect(() => {
+        setIsLoaded(true);
+
         PayloadService.fetchPayloads()
             .then((res) => {
-                    setIsLoaded(true);
+                    setIsLoaded(false);
                     setPayloads(res.data);
                 }
             )
             .catch((error) => {
-                setIsLoaded(true);
+                setIsLoaded(false);
                 setError(error);
             })
-    });
+    }, []);
 
     // TODO: To improve error and isLoaded
     if (error) {
         return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
+    } else if (isLoaded) {
         return (
             <>
                 <PageTitle title="Payloads"/>
