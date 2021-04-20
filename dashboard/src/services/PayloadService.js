@@ -1,23 +1,31 @@
-import Api from "./Api";
+import api from "./Api";
 
-export default {
-	fetchPayloads() {
-		return Api().get('payload')
-	},
-
-	fetchPayload(payload_id) {
-		return Api().get('payload?payload_id=' + payload_id)
-	},
-
-	createPayload(newPayload) {
-		return Api().post('payload', newPayload)
-	},
-
-	editPayload(payload_id, newPayload) {
-		return Api().put('payload?payload_id=' + payload_id, newPayload)
-	},
-
-	deletePayload(payload_id) {
-		return Api().delete('payload?payload_id=' + payload_id)
-	}
+function fetchPayloads() {
+	return api().get('/payload');
 }
+
+function fetchPayload(payload_id) {
+	return api().get('/payload?payload_id=' + payload_id);
+}
+
+function createPayload(newPayload) {
+	return api().post('/payload', newPayload);
+}
+
+function editPayload(payload_id, newPayload) {
+	return api().put('/payload?payload_id=' + payload_id, newPayload);
+}
+
+function deletePayload(payload_id) {
+	return api().delete('/payload?payload_id=' + payload_id);
+}
+
+const exportedObj = {
+	fetchPayloads,
+	fetchPayload,
+	createPayload,
+	editPayload,
+	deletePayload
+};
+
+export default exportedObj;

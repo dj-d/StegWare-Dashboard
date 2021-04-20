@@ -1,7 +1,9 @@
 import axios from 'axios'
 
-export default() => {
+const url = 'http://localhost:9999/api';
+
+export default function api() {
 	return axios.create({
-		baseURL: 'http://192.168.0.246:9999/api'
-	})
+		baseURL: url
+	});
 }
