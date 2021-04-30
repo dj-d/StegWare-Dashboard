@@ -6,6 +6,7 @@ import Delete from "../PayloadAction/Delete/Delete";
 // icons
 import {
     Info as InfoIcon,
+    Edit as EditIcon,
     Delete as DeleteIcon
 } from "@material-ui/icons";
 
@@ -53,13 +54,27 @@ export default function PayloadCard({ payload }) {
                         startIcon={<InfoIcon/>}
                         className={classes.button}
                     >
-                        More
+                        Detail
                     </Button>
+
                     <Box m={2}>
                     </Box>
+
+                    <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<EditIcon/>}
+                    className={classes.button}
+                    >
+                        Edit
+                    </Button>
+
+                    <Box m={2}>
+                    </Box>
+
                     <Button
                         variant="contained"
-                        color="secondary"
+                        color="tertiary"
                         startIcon={<DeleteIcon/>}
                         onClick={handleClick('bottom')}
                         className={classes.button}
