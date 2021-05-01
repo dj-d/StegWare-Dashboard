@@ -1,7 +1,18 @@
-import React, { useState } from "react";
-import { Box, Button, Card, CardActions, CardHeader, Divider } from "@material-ui/core";
+import React, { forwardRef, useState } from "react";
+import {
+    Box,
+    Button,
+    Card,
+    CardActions,
+    CardHeader,
+    Dialog,
+    Divider,
+    Popper,
+    Slide
+} from "@material-ui/core";
 
 import Delete from "../PayloadAction/Delete/Delete";
+import Detail from "../PayloadAction/Detail/Detail";
 
 // icons
 import {
@@ -13,26 +24,42 @@ import {
 // styles
 import useStyles from "./styles";
 
+const TransitionDialog = forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+})
+
 export default function PayloadCard({ payload }) {
     let classes = useStyles();
 
     const [anchorEl, setAnchorEl] = useState(null);
-    const [open, setOpen] = useState(false);
     const [placement, setPlacement] = useState();
+    const [openDelete, setOpenDelete] = useState(false);
+
+    const [openDetail, setOpenDetail] = useState(false);
+
+    const handleClickDetail = () => {
+        setOpenDetail(!openDetail);
+    }
 
     const handleClick = (newPlacement) => (event) => {
         setAnchorEl(event.currentTarget);
-        setOpen((prev) => placement !== newPlacement || !prev);
+        setOpenDelete((prev) => placement !== newPlacement || !prev);
         setPlacement(newPlacement);
     }
 
-    function changeDeleteVisibility (newValue) {
-        setOpen(newValue);
+    function changeDeleteVisibility(newValue) {
+        setOpenDelete(newValue);
     }
 
     return (
         <>
-            <Delete anchorEl={anchorEl} open={open} placement={placement} deleteVisibility={changeDeleteVisibility} payloadID={payload._id} />
+            <Dialog fullScreen open={openDetail} onClose={handleClickDetail} TransitionComponent={TransitionDialog}>
+                <Detail payload={payload} changeVisibility={handleClickDetail}/>
+            </Dialog>
+
+            <Popper open={openDelete} anchorEl={anchorEl} placement={placement} disablePortal={true}>
+                <Delete changeVisibility={changeDeleteVisibility} payloadID={payload._id}/>
+            </Popper>
 
             <Card className={classes.card}>
                 <CardHeader
@@ -50,21 +77,9 @@ export default function PayloadCard({ payload }) {
                 <CardActions className={classes.action}>
                     <Button
                         variant="contained"
-                        color="primary"
-                        startIcon={<InfoIcon/>}
+                        color="secondary"
+                        startIcon={<EditIcon/>}
                         className={classes.button}
-                    >
-                        Detail
-                    </Button>
-
-                    <Box m={2}>
-                    </Box>
-
-                    <Button
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<EditIcon/>}
-                    className={classes.button}
                     >
                         Edit
                     </Button>
@@ -74,7 +89,20 @@ export default function PayloadCard({ payload }) {
 
                     <Button
                         variant="contained"
-                        color="tertiary"
+                        color="primary"
+                        startIcon={<InfoIcon/>}
+                        onClick={handleClickDetail}
+                        className={classes.button}
+                    >
+                        Detail
+                    </Button>
+
+                    <Box m={2}>
+                    </Box>
+
+                    <Button
+                        variant="contained"
+                        color="secondary"
                         startIcon={<DeleteIcon/>}
                         onClick={handleClick('bottom')}
                         className={classes.button}

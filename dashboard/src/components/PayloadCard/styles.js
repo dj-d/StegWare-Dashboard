@@ -36,5 +36,31 @@ export default makeStyles(theme => ({
         cursor: "pointer",
         boxShadow: theme.customShadows.widget,
         color: theme.palette.secondary.contrastText
-    }
+    },
+
+    progress: {
+        visibility: "hidden",
+    },
+    notification: {
+        display: "flex",
+        alignItems: "center",
+        background: "transparent",
+        boxShadow: "none",
+        overflow: "visible",
+    },
+    toastsContainer: {
+        width: 400,
+        marginTop: theme.spacing(6),
+        right: 0,
+    },
+
+
+    appBar: {
+        position: 'relative'
+    },
+
+    title: {
+        marginLeft: theme.spacing(2),
+        flex: 1
+    },
 }))
