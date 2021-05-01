@@ -11,13 +11,12 @@ import {
     Slide
 } from "@material-ui/core";
 
-import Delete from "../PayloadAction/Delete/Delete";
 import Detail from "../PayloadAction/Detail/Detail";
+import Delete from "../PayloadAction/Delete/Delete";
 
 // icons
 import {
     Info as InfoIcon,
-    Edit as EditIcon,
     Delete as DeleteIcon
 } from "@material-ui/icons";
 
@@ -75,18 +74,6 @@ export default function PayloadCard({ payload }) {
                 <Divider variant="middle"/>
 
                 <CardActions className={classes.action}>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        startIcon={<EditIcon/>}
-                        className={classes.button}
-                    >
-                        Edit
-                    </Button>
-
-                    <Box m={2}>
-                    </Box>
-
                     <Button
                         variant="contained"
                         color="primary"
