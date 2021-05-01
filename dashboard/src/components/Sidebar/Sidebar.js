@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Drawer, IconButton, List} from "@material-ui/core";
 import {
 	Home as HomeIcon,
+	Image as StegIcon,
 	ArrowBack as ArrowBackIcon,
 	Apps as PayloadsIcon,
 	Flag as AttacksIcon,
@@ -30,30 +31,36 @@ const structure = [
 	},
 	{
 		id: 1,
+		label: "Steganography",
+		link: "/app/steganography",
+		icon: <StegIcon/>
+	},
+	{
+		id: 2,
 		label: "Payloads",
 		link: "/app/payload",
 		icon: <PayloadsIcon/>
 	},
 	{
-		id: 2,
+		id: 3,
 		label: "Attacks",
 		link: "/app/attack",
 		icon: <AttacksIcon/>
 		},
 	{
-		id: 3,
+		id: 4,
 		label: "Infected devices",
 		link: "/app/infectedDevice",
 		icon: <InfectedDevicesIcon/>
 	},
 	{
-		id: 4,
+		id: 5,
 		label: "Team",
 		link: "/app/team",
 		icon: <TeamIcon/>
 	},
 	{
-		id: 5,
+		id: 6,
 		type: "divider"
 	}
 ];

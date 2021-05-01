@@ -18,6 +18,7 @@ import Sidebar from "../Sidebar";
 
 // pages
 import Dashboard from "../../pages/dashboard";
+import Steganography from "../../pages/steganography/Steganography";
 import Payload from "../../pages/payload/Payload";
 import Attack from "../../pages/attack/Attack";
 import InfectedDevice from "../../pages/infectedDevice/InfectedDevice"
@@ -41,6 +42,7 @@ function Layout(props) {
 					<div className={classes.fakeToolbar}/>
 					<Switch>
 						<Route path="/app/dashboard" component={Dashboard}/>
+						<Route path="/app/steganography" component={Steganography}/>
 						<Route path="/app/payload" component={Payload}/>
 						<Route path="/app/attack" component={Attack}/>
 						<Route path="/app/infectedDevice" component={InfectedDevice}/>
