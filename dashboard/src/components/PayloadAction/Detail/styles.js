@@ -15,6 +15,10 @@ export default makeStyles(theme => ({
         boxShadow: theme.customShadows.widget,
         minHeight: "100%"
     },
+    cardContent: {
+        margin: 5,
+        marginLeft: theme.spacing(2)
+    },
     button: {
         cursor: "pointer",
         color: theme.palette.secondary.contrastText

@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     AppBar,
     Button,
     Card,
-    CardHeader,
+    CardContent,
+    CardHeader, FormControl,
     Grid,
     IconButton,
     List,
     ListItem,
     ListItemText,
-    Toolbar, Typography
+    MenuItem,
+    Select,
+    TextField,
+    Toolbar,
+    Typography
 } from "@material-ui/core";
 
 import Editor from "@monaco-editor/react"
@@ -17,6 +22,7 @@ import Editor from "@monaco-editor/react"
 // icons
 import {
     Edit as EditIcon,
+    Save as SaveIcon,
     Close as CloseIcon
 } from "@material-ui/icons";
 
@@ -26,13 +32,37 @@ import useStyles from "./styles";
 export default function Detail({ payload, ...props }) {
     const classes = useStyles();
 
+    const [returnType, setReturnType] = useState(payload.resultType)
+
+    const handleChangeReturnType = (event) => {
+        setReturnType(event.target.value);
+    }
+
+    const [isEditMode, setEditMode] = useState(false);
+
+    function changeEditMode() {
+        setEditMode(!isEditMode);
+    }
+
+    const editorOptions = {
+        readOnly: !isEditMode,
+        theme: "vs",
+        loading: "Loading..."
+    }
+
     const data = [
         {
             title: "Description",
-            subheader: payload.description
+            subheader:
+                <TextField
+                    disabled={!isEditMode}
+                    id="Description"
+                    defaultValue={payload.description}
+                    variant="outlined"
+                />
         },
         {
-            title: "Permissions",
+            title: "Permissions", // TODO: Add edit mode
             subheader:
                 <List>
                     {payload.vulnerabilities.map(item => (
@@ -44,11 +74,28 @@ export default function Detail({ payload, ...props }) {
         },
         {
             title: "Return",
-            subheader: payload.resultType
+            subheader:
+                <FormControl variant="outlined">
+                    <Select
+                        disabled={!isEditMode}
+                        value={returnType}
+                        onChange={handleChangeReturnType}
+                    >
+                        <MenuItem value="String">String</MenuItem>
+                        <MenuItem value="JSON">JSON</MenuItem>
+                        <MenuItem value="Image">Image</MenuItem>
+                        <MenuItem value="Sound">Sound</MenuItem>
+                    </Select>
+                </FormControl>
         },
         {
             title: "Executed",
-            subheader: "()"
+            subheader: <TextField
+                disabled={!isEditMode}
+                id="Executed"
+                defaultValue="()"
+                variant="outlined"
+            />
         }
     ];
 
@@ -64,18 +111,35 @@ export default function Detail({ payload, ...props }) {
                         <CloseIcon/>
                     </IconButton>
 
-                    <Typography variant="h6" className={classes.title}>
-                        {payload.name}
-                    </Typography>
+                    <TextField // TODO: Fix text color
+                        disabled={!isEditMode}
+                        id="title"
+                        defaultValue={payload.name}
+                        variant="outlined"
+                        className={classes.title}
+                    />
 
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        startIcon={<EditIcon/>}
-                        className={classes.button}
-                    >
-                        Edit
-                    </Button>
+                    {!isEditMode ?
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<EditIcon/>}
+                            className={classes.button}
+                            onClick={changeEditMode}
+                        >
+                            Edit
+                        </Button>
+                        :
+                        <Button
+                            variant="contained"
+                            color="primary" // TODO: Change color
+                            startIcon={<SaveIcon/>}
+                            className={classes.button}
+                            onClick={changeEditMode}
+                        >
+                            Save
+                        </Button>}
+
                 </Toolbar>
             </AppBar>
 
@@ -106,13 +170,21 @@ export default function Detail({ payload, ...props }) {
                                 subheader: classes.headerSubtitle
                             }}
                         />
+                        {isEditMode && ( // TODO: To improve
+                            <CardContent className={classes.cardContent}>
+                                <Typography variant="h6">Be careful:</Typography>
+                                <Typography>- Please use only /* Block comment */</Typography>
+                                <Typography>- Please don't use nested class</Typography>
+                                <Typography>- You can call another class in this code only using dynamic loading and
+                                    reflection</Typography>
+                            </CardContent>
+                        )}
 
                         <Editor
                             height="50vh" // TODO: To fix
                             language="java"
-                            theme='vs'
+                            options={editorOptions}
                             value={payload.content}
-                            loading={"Loading..."}
                         />
 
                     </Card>
