@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import Skeleton from '@material-ui/lab/Skeleton';
 
 // component
@@ -9,7 +9,15 @@ import PayloadCard from "../../components/PayloadCard/PayloadCard";
 // service
 import PayloadService from "../../services/PayloadService";
 
+import {
+    Add as AddIcon
+} from "@material-ui/icons";
+
+import useStyles from "./styles";
+
 function PayloadPage() {
+    let classes = useStyles();
+
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [payloads, setPayloads] = useState([]);
@@ -55,7 +63,18 @@ function PayloadPage() {
     } else {
         return (
             <>
-                <PageTitle title="Payloads"/>
+                <PageTitle
+                    title="Payloads"
+                    button={
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            startIcon={<AddIcon/>}
+                            className={classes.button}
+                        >
+                            CREATE NEW
+                        </Button>
+                    }/>
 
                 <Grid container spacing={4}>
                     {payloads.map(payload => (
