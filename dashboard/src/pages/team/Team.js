@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 
 // component
-import PageTitle from "../../components/PageTitle";
+import PageTitle from "../../components/PageTitle/PageTitle";
 import UserCard from "../../components/UserCard/UserCard";
 
 import team_data from "../../static/mocks/team";

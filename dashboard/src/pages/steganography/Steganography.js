@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PageTitle from "../../components/PageTitle";
+import PageTitle from "../../components/PageTitle/PageTitle";
 import { Box, Button, FormControl, Grid, MenuItem, Paper, Select } from "@material-ui/core";
 import PayloadService from "../../services/PayloadService";
 

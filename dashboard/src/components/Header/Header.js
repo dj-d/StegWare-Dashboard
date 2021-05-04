@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {AppBar, Toolbar, IconButton, InputBase, Menu, MenuItem} from "@material-ui/core";
 
 // components
-import {Typography} from "../Wrappers";
+import {Typography} from "../Wrappers/Wrappers";
 
 // icons
 import {

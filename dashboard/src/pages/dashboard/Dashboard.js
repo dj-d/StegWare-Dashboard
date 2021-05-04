@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Card, CardMedia } from "@material-ui/core";
 
 // components
-import PageTitle from "../../components/PageTitle";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 // styles
 import useStyles from "./styles";

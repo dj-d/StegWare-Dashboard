@@ -2,11 +2,11 @@ import React from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 
 // components
-import Layout from "./Layout";
+import Layout from "./Layout/Layout";
 
 // pages
-import Error from "../pages/error";
-import Login from "../pages/login";
+import Error from "../pages/error/Error";
+import Login from "../pages/login/Login";
 
 // context
 import { useUserState } from "../context/UserContext";

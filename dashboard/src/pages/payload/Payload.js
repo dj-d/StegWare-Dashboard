@@ -3,7 +3,7 @@ import { Button, Grid } from "@material-ui/core";
 import Skeleton from '@material-ui/lab/Skeleton';
 
 // component
-import PageTitle from "../../components/PageTitle";
+import PageTitle from "../../components/PageTitle/PageTitle";
 import PayloadCard from "../../components/PayloadCard/PayloadCard";
 
 // service

@@ -13,11 +13,11 @@ import {
 import useStyles from "./styles";
 
 // components
-import Header from "../Header";
-import Sidebar from "../Sidebar";
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
 
 // pages
-import Dashboard from "../../pages/dashboard";
+import Dashboard from "../../pages/dashboard/Dashboard";
 import Steganography from "../../pages/steganography/Steganography";
 import Payload from "../../pages/payload/Payload";
 import Attack from "../../pages/attack/Attack";
