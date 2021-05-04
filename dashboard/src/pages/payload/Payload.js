@@ -15,34 +15,34 @@ import {
 
 import useStyles from "./styles";
 
-function PayloadPage() {
+export default function Payload() {
     let classes = useStyles();
 
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [errorPayload, setErrorPayload] = useState(null);
+    const [isLoadedPayload, setIsLoadedPayload] = useState(false);
     const [payloads, setPayloads] = useState([]);
 
     const value = ["", "", "", "", "", "", "", ""];
 
     useEffect(() => {
-        setIsLoaded(true);
+        setIsLoadedPayload(true);
 
         PayloadService.fetchPayloads()
             .then((res) => {
-                    setIsLoaded(false);
+                    setIsLoadedPayload(false);
                     setPayloads(res.data);
                 }
             )
             .catch((error) => {
-                setIsLoaded(false);
-                setError(error);
+                setIsLoadedPayload(false);
+                setErrorPayload(error);
             })
     }, []);
 
     // TODO: To improve error and isLoaded
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (isLoaded) {
+    if (errorPayload) {
+        return <div>Error: {errorPayload.message}</div>;
+    } else if (isLoadedPayload) {
         return (
             <>
                 <PageTitle title="Payloads"/>
@@ -87,5 +87,3 @@ function PayloadPage() {
         );
     }
 }
-
-export default PayloadPage;
