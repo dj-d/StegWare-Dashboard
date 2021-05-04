@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Card, CardMedia, CardActionArea } from "@material-ui/core";
+import { Grid, Card, CardMedia } from "@material-ui/core";
 
 // components
 import PageTitle from "../../components/PageTitle";
@@ -19,7 +19,7 @@ export default function Dashboard() {
 
             <Grid container spacing={4} justify="center">
                 <Grid item sm={4} xs={6}>
-                    <Card>
+                    <Card className={classes.card}>
                         <CardMedia
                             component="img"
                             image={logo}

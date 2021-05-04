@@ -2,8 +2,9 @@ import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles(theme => ({
   card: {
-    minHeight: "100%",
-    display: "flex",
-    flexDirection: "column",
+    display: "block",
+    borderRadius: 10,
+    boxShadow: theme.customShadows.widget,
+    minHeight: "100%"
   }
 }));
