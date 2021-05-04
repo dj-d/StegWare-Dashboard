@@ -17,15 +17,13 @@ export default function Dashboard() {
         <>
             <PageTitle title="Dashboard"/>
 
-            <Grid container spacing={4}>
-                <Grid item lg={3} md={4} sm={6} xs={12}>
+            <Grid container spacing={4} justify="center">
+                <Grid item sm={4} xs={6}>
                     <Card>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                image={logo}
-                            />
-                        </CardActionArea>
+                        <CardMedia
+                            component="img"
+                            image={logo}
+                        />
                     </Card>
                 </Grid>
             </Grid>
