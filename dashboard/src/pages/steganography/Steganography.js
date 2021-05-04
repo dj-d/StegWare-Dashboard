@@ -7,7 +7,7 @@ import useStyles from "./styles";
 
 import ImageUploader from "react-images-upload"
 
-export default function SteganographyPage({ ...props }) {
+export default function Steganography({ ...props }) {
     let classes = useStyles();
 
     const [selectedPayload, setSelectedPayload] = useState("")
