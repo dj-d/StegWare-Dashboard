@@ -7,7 +7,7 @@ import UserCard from "../../components/UserCard/UserCard";
 
 import team_data from "../../static/mocks/team";
 
-export default function TeamPage() {
+export default function Team() {
     return (
         <>
             <PageTitle title="Team"/>
