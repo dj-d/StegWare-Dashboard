@@ -8,6 +8,9 @@ export default makeStyles(theme => ({
         marginLeft: theme.spacing(2),
         flex: 1
     },
+    textFiled: {
+        color: "#FFFFFF"
+    },
     card: {
         display: "block",
         margin: 5,

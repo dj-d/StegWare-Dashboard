@@ -117,6 +117,9 @@ export default function Detail({ payload, ...props }) {
                         defaultValue={payload.name}
                         variant="outlined"
                         className={classes.title}
+                        inputProps={{
+                            className: classes.textFiled
+                        }}
                     />
 
                     {!isEditMode ?
