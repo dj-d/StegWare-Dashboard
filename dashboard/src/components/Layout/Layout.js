@@ -48,7 +48,7 @@ function Layout(props) {
 						<Route path="/app/infectedDevice" component={InfectedDevice}/>
 						<Route path="/app/team" component={Team}/>
 					</Switch>
-					<Box mt={5} width={"100%"} display={"flex"} alignItems={"center"} justifyContent="space-between">
+					<Box mt={5} width={"100%"} display={"flex"} alignItems={"center"} justifyContent="space-between" className={classes.footer}>
 						<div>
 							<Link color={'primary'} href={'https://github.com/dj-d'} target={'_blank'} className={classes.link}>
 								GitHub Profile

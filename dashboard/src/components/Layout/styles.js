@@ -26,5 +26,11 @@ export default makeStyles(theme => ({
     '&:not(:first-child)': {
       paddingLeft: 15
     }
+  },
+  // TODO: To fix
+  footer: {
+    position: "fixed",
+    bottom: 0,
+    width: "85%"
   }
 }));
