@@ -18,6 +18,7 @@ import {
 } from "@material-ui/core";
 
 import Editor from "@monaco-editor/react"
+import Wrappers from "../../Wrappers/Wrappers";
 
 // icons
 import {
@@ -123,25 +124,21 @@ export default function Detail({ payload, ...props }) {
                     />
 
                     {!isEditMode ?
-                        <Button
-                            variant="contained"
+                        <Wrappers.Button
+                            text="Edit"
                             color="secondary"
                             startIcon={<EditIcon/>}
-                            className={classes.button}
                             onClick={changeEditMode}
-                        >
-                            Edit
-                        </Button>
+                            className={classes.button}
+                        />
                         :
-                        <Button
-                            variant="contained"
-                            color="primary" // TODO: Change color
+                        <Wrappers.Button
+                            text="Save"
                             startIcon={<SaveIcon/>}
-                            className={classes.button}
                             onClick={changeEditMode}
-                        >
-                            Save
-                        </Button>}
+                            className={classes.button}
+                        />
+                    }
 
                 </Toolbar>
             </AppBar>

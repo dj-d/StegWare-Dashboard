@@ -15,14 +15,8 @@ export default makeStyles(theme => ({
         padding: theme.spacing(2),
         fontWeight: "bold"
     },
-    buttonCancel: {
+    button: {
         cursor: "pointer",
-        margin: theme.spacing(2),
-        color: theme.palette.warning.main
-    },
-    buttonContinue: {
-        cursor: "pointer",
-        margin: theme.spacing(2),
-        color: theme.palette.success.main
+        margin: theme.spacing(2)
     }
 }))

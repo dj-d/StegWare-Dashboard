@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Grid } from "@material-ui/core";
 import Skeleton from '@material-ui/lab/Skeleton';
 
+import Wrappers from "../../components/Wrappers/Wrappers";
+
 // component
 import PageTitle from "../../components/PageTitle/PageTitle";
 import PayloadCard from "../../components/PayloadCard/PayloadCard";
@@ -66,14 +68,10 @@ export default function Payload() {
                 <PageTitle
                     title="Payloads"
                     button={
-                        <Button
-                            variant="contained"
-                            color="primary"
+                        <Wrappers.Button
+                            text="Create new"
                             startIcon={<AddIcon/>}
-                            className={classes.button}
-                        >
-                            CREATE NEW
-                        </Button>
+                        />
                     }/>
 
                 <Grid container spacing={4}>

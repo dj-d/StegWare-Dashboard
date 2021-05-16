@@ -3,6 +3,8 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import { Box, Button, FormControl, Grid, MenuItem, Paper, Select } from "@material-ui/core";
 import PayloadService from "../../services/PayloadService";
 
+import Wrappers from "../../components/Wrappers/Wrappers";
+
 import useStyles from "./styles";
 
 import ImageUploader from "react-images-upload"
@@ -94,17 +96,18 @@ export default function Steganography({ ...props }) {
 
                             <Grid item>
                                 {pictures.length !== 0 && selectedPayload !== "" && (
-                                    <Button variant="outlined" onClick={changeIsImgEncoded}>
-                                        ENCODE
-                                    </Button>
+                                    <Wrappers.Button
+                                        text="Encode"
+                                        onClick={changeIsImgEncoded}
+                                    />
                                 )}
                             </Grid>
 
                             <Grid item>
                                 {pictures.length !== 0 && selectedPayload !== "" && isImgEncoded && (
-                                    <Button variant="outlined">
-                                        DOWNLOAD
-                                    </Button>
+                                    <Wrappers.Button
+                                        text="Download"
+                                    />
                                 )}
                             </Grid>
                         </Grid>

@@ -23,8 +23,7 @@ export default makeStyles(theme => ({
         marginLeft: theme.spacing(2)
     },
     button: {
-        cursor: "pointer",
-        color: theme.palette.secondary.contrastText
+        boxShadow: "0px 3px 3px -2px #000000"
     },
     header: {
         margin: theme.spacing(2)

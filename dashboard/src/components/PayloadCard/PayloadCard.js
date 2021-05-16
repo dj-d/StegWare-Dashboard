@@ -1,7 +1,6 @@
 import React, { forwardRef, useState } from "react";
 import {
     Box,
-    Button,
     Card,
     CardActions,
     CardHeader,
@@ -13,6 +12,8 @@ import {
 
 import Detail from "../PayloadAction/Detail/Detail";
 import Delete from "../PayloadAction/Delete/Delete";
+
+import Wrappers from "../Wrappers/Wrappers";
 
 // icons
 import {
@@ -74,28 +75,22 @@ export default function PayloadCard({ payload }) {
                 <Divider variant="middle"/>
 
                 <CardActions className={classes.action}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        startIcon={<InfoIcon/>}
+                    <Wrappers.Button
+                        text="Detail"
                         onClick={handleClickDetail}
-                        className={classes.button}
-                    >
-                        Detail
-                    </Button>
+                        startIcon={<InfoIcon/>}
+                    />
 
                     <Box m={2}>
                     </Box>
 
-                    <Button
-                        variant="contained"
+                    <Wrappers.Button
+                        text="Delete"
                         color="secondary"
-                        startIcon={<DeleteIcon/>}
                         onClick={handleClick('bottom')}
-                        className={classes.button}
-                    >
-                        Delete
-                    </Button>
+                        startIcon={<DeleteIcon/>}
+                    />
+
                 </CardActions>
             </Card>
         </>
