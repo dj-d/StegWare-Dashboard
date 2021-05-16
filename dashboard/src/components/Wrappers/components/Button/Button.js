@@ -6,14 +6,15 @@ import useStyle from "./style";
 export default function Button(props) {
     const classes = useStyle();
 
-    const { text, size, color, variant, onClick, ...other } = props;
+    const { text, size, color, variant, onClick, startIcon, ...other } = props;
 
     return (
         <MuiButton
             variant={variant || "contained"}
-            size={size || "medium"}
+            size={size || "large"}
             color={color || "primary"}
             onClick={onClick}
+            startIcon={startIcon}
             {...other}
             classes={{
                 root: classes.root,
