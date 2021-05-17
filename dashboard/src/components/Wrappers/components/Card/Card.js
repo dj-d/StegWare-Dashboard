@@ -8,17 +8,8 @@ import {
 
 import useStyle from "./style";
 
-export default function Card(props) {
+export default function Card({ cardHeader = false, headerTitle, headerSubtitle, cardContent = false, cardContentContent, cardAction = false, other }) {
     const classes = useStyle();
-
-    const {
-        cardHeader = false,
-        headerTitle,
-        headerSubtitle,
-        cardContent = false,
-        cardContentContent,
-        cardAction = false,
-    } = props;
 
     return (
         <MuiCard className={classes.card}>
@@ -47,6 +38,8 @@ export default function Card(props) {
 
                 </MuiCardActionArea>
             )}
+
+            {other}
         </MuiCard>
     )
 }
