@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import {
     AppBar,
-    Button,
-    Card,
-    CardContent,
-    CardHeader, FormControl,
+    FormControl,
     Grid,
     IconButton,
     List,
@@ -18,7 +15,7 @@ import {
 } from "@material-ui/core";
 
 import Editor from "@monaco-editor/react"
-import Wrappers from "../../Wrappers/Wrappers";
+import { Button, Card } from "../../Wrappers/Wrappers";
 
 // icons
 import {
@@ -124,7 +121,7 @@ export default function Detail({ payload, ...props }) {
                     />
 
                     {!isEditMode ?
-                        <Wrappers.Button
+                        <Button
                             text="Edit"
                             color="secondary"
                             startIcon={<EditIcon/>}
@@ -132,7 +129,7 @@ export default function Detail({ payload, ...props }) {
                             className={classes.button}
                         />
                         :
-                        <Wrappers.Button
+                        <Button
                             text="Save"
                             startIcon={<SaveIcon/>}
                             onClick={changeEditMode}
@@ -146,48 +143,37 @@ export default function Detail({ payload, ...props }) {
             <Grid container spacing={4}>
                 {data.map(item => (
                     <Grid key={payload.title} item lg={3} md={4} sm={6} xs={12}>
-                        <Card className={classes.card}>
-                            <CardHeader
-                                title={item.title}
-                                subheader={item.subheader}
-                                classes={{
-                                    root: classes.header,
-                                    title: classes.headerTitle,
-                                    subheader: classes.headerSubtitle
-                                }}
-                            />
-                        </Card>
+                        <Card
+                            cardHeader={true}
+                            headerTitle={item.title}
+                            headerSubtitle={item.subheader}
+                        />
                     </Grid>
                 ))}
 
                 <Grid item xs={12}>
-                    <Card className={classes.card}>
-                        <CardHeader
-                            title="Code"
-                            classes={{
-                                root: classes.header,
-                                title: classes.headerTitle,
-                                subheader: classes.headerSubtitle
-                            }}
-                        />
-                        {isEditMode && ( // TODO: To improve
-                            <CardContent className={classes.cardContent}>
+                    <Card
+                        cardHeader={true}
+                        headerTitle="Code"
+                        cardContent={isEditMode}
+                        cardContentContent={
+                            <>
                                 <Typography variant="h6">Be careful:</Typography>
                                 <Typography>- Please use only /* Block comment */</Typography>
                                 <Typography>- Please don't use nested class</Typography>
                                 <Typography>- You can call another class in this code only using dynamic loading and
                                     reflection</Typography>
-                            </CardContent>
-                        )}
-
-                        <Editor
-                            height="50vh" // TODO: To fix
-                            language="java"
-                            options={editorOptions}
-                            value={payload.content}
-                        />
-
-                    </Card>
+                            </>
+                        }
+                        other={
+                            <Editor
+                                height="50vh" // TODO: To fix
+                                language="java"
+                                options={editorOptions}
+                                value={payload.content}
+                            />
+                        }
+                    />
                 </Grid>
             </Grid>
         </>
