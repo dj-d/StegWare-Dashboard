@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PageTitle from "../../components/PageTitle/PageTitle";
-import { Box, Button, FormControl, Grid, MenuItem, Paper, Select } from "@material-ui/core";
+import { Box, FormControl, Grid, MenuItem, Paper, Select } from "@material-ui/core";
 import PayloadService from "../../services/PayloadService";
 
-import Wrappers from "../../components/Wrappers/Wrappers";
+import { Button } from "../../components/Wrappers/Wrappers";
 
 import useStyles from "./styles";
 
@@ -96,7 +96,7 @@ export default function Steganography({ ...props }) {
 
                             <Grid item>
                                 {pictures.length !== 0 && selectedPayload !== "" && (
-                                    <Wrappers.Button
+                                    <Button
                                         text="Encode"
                                         onClick={changeIsImgEncoded}
                                     />
@@ -105,7 +105,7 @@ export default function Steganography({ ...props }) {
 
                             <Grid item>
                                 {pictures.length !== 0 && selectedPayload !== "" && isImgEncoded && (
-                                    <Wrappers.Button
+                                    <Button
                                         text="Download"
                                     />
                                 )}

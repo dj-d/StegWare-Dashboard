@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Skeleton from '@material-ui/lab/Skeleton';
 
-import Wrappers from "../../components/Wrappers/Wrappers";
+import { Button } from "../../components/Wrappers/Wrappers";
 
 // component
 import PageTitle from "../../components/PageTitle/PageTitle";
@@ -68,7 +68,7 @@ export default function Payload() {
                 <PageTitle
                     title="Payloads"
                     button={
-                        <Wrappers.Button
+                        <Button
                             text="Create new"
                             startIcon={<AddIcon/>}
                         />

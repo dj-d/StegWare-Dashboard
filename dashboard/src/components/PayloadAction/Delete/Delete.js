@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 
-import Wrappers from "../../Wrappers/Wrappers";
+import { Button } from "../../Wrappers/Wrappers";
 
 // service
 import PayloadService from "../../../services/PayloadService";
@@ -28,14 +28,14 @@ export default function Delete({ ...props }) {
             <Paper className={classes.paper}>
                 <Typography className={classes.title}>Are you sure?</Typography>
 
-                <Wrappers.Button
+                <Button
                     text="No"
                     size="small"
                     onClick={changeVisibility}
                     className={classes.button}
                 />
 
-                <Wrappers.Button
+                <Button
                     text="Yes"
                     size="small"
                     color="secondary"

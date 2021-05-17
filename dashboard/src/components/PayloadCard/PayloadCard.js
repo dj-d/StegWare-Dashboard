@@ -13,7 +13,7 @@ import {
 import Detail from "../PayloadAction/Detail/Detail";
 import Delete from "../PayloadAction/Delete/Delete";
 
-import Wrappers from "../Wrappers/Wrappers";
+import { Button } from "../../components/Wrappers/Wrappers";
 
 // icons
 import {
@@ -75,7 +75,7 @@ export default function PayloadCard({ payload }) {
                 <Divider variant="middle"/>
 
                 <CardActions className={classes.action}>
-                    <Wrappers.Button
+                    <Button
                         text="Detail"
                         onClick={handleClickDetail}
                         startIcon={<InfoIcon/>}
@@ -84,7 +84,7 @@ export default function PayloadCard({ payload }) {
                     <Box m={2}>
                     </Box>
 
-                    <Wrappers.Button
+                    <Button
                         text="Delete"
                         color="secondary"
                         onClick={handleClick('bottom')}
