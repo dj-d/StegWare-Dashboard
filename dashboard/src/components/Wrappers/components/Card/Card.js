@@ -6,10 +6,10 @@ import {
     CardHeader as MuiCardHeader
 } from "@material-ui/core";
 
-import useStyle from "./style";
+import useStyles from "./styles";
 
 export default function Card({ cardHeader = false, headerTitle, headerSubtitle, cardContent = false, cardContentContent, cardAction = false, other }) {
-    const classes = useStyle();
+    const classes = useStyles();
 
     return (
         <MuiCard className={classes.card}>

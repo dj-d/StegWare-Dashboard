@@ -1,12 +1,10 @@
 import React from "react";
 import { Button as MuiButton } from "@material-ui/core";
 
-import useStyle from "./style";
+import useStyles from "./styles";
 
-export default function Button(props) {
-    const classes = useStyle();
-
-    const { text, size, color, variant, onClick, startIcon, ...other } = props;
+export default function Button({ children, size, color, variant, onClick, startIcon, ...other }) {
+    const classes = useStyles();
 
     return (
         <MuiButton
@@ -21,7 +19,7 @@ export default function Button(props) {
                 label: classes.label
             }}
         >
-            {text}
+            {children}
         </MuiButton>
     )
 }
