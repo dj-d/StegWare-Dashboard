@@ -96,18 +96,17 @@ export default function Steganography({ ...props }) {
 
                             <Grid item>
                                 {pictures.length !== 0 && selectedPayload !== "" && (
-                                    <Button
-                                        text="Encode"
-                                        onClick={changeIsImgEncoded}
-                                    />
+                                    <Button onClick={changeIsImgEncoded}>
+                                        Encode
+                                    </Button>
                                 )}
                             </Grid>
 
                             <Grid item>
                                 {pictures.length !== 0 && selectedPayload !== "" && isImgEncoded && (
-                                    <Button
-                                        text="Download"
-                                    />
+                                    <Button>
+                                        Download
+                                    </Button>
                                 )}
                             </Grid>
                         </Grid>

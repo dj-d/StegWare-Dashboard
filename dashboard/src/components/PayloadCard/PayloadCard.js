@@ -76,20 +76,22 @@ export default function PayloadCard({ payload }) {
 
                 <CardActions className={classes.action}>
                     <Button
-                        text="Detail"
                         onClick={handleClickDetail}
                         startIcon={<InfoIcon/>}
-                    />
+                    >
+                        Detail
+                    </Button>
 
                     <Box m={2}>
                     </Box>
 
                     <Button
-                        text="Delete"
                         color="secondary"
                         onClick={handleClick('bottom')}
                         startIcon={<DeleteIcon/>}
-                    />
+                    >
+                        Delete
+                    </Button>
 
                 </CardActions>
             </Card>
