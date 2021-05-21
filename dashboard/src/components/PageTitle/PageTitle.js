@@ -1,5 +1,6 @@
 import React from "react";
-import {Typography} from "@material-ui/core";
+
+import { Typography } from "../Wrappers/Wrappers";
 
 // styles
 import useStyles from "./styles";
