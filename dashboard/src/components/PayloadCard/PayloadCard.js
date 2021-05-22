@@ -1,11 +1,7 @@
 import React, { forwardRef, useState } from "react";
 import {
     Box,
-    Card,
-    CardActions,
-    CardHeader,
     Dialog,
-    Divider,
     Popper,
     Slide
 } from "@material-ui/core";
@@ -13,7 +9,7 @@ import {
 import Detail from "../PayloadAction/Detail/Detail";
 import Delete from "../PayloadAction/Delete/Delete";
 
-import { Button } from "../../components/Wrappers/Wrappers";
+import { Button, Card } from "../../components/Wrappers/Wrappers";
 
 // icons
 import {
@@ -21,16 +17,11 @@ import {
     Delete as DeleteIcon
 } from "@material-ui/icons";
 
-// styles
-import useStyles from "./styles";
-
 const TransitionDialog = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 })
 
 export default function PayloadCard({ payload }) {
-    let classes = useStyles();
-
     const [anchorEl, setAnchorEl] = useState(null);
     const [placement, setPlacement] = useState();
     const [openDelete, setOpenDelete] = useState(false);
@@ -61,40 +52,33 @@ export default function PayloadCard({ payload }) {
                 <Delete changeVisibility={changeDeleteVisibility} payloadID={payload._id}/>
             </Popper>
 
-            <Card className={classes.card}>
-                <CardHeader
-                    title={payload.name}
-                    subheader={payload.description}
-                    classes={{
-                        root: classes.header,
-                        title: classes.headerTitle,
-                        subheader: classes.headerSubtitle
-                    }}
-                />
+            <Card
+                cardHeader={true}
+                headerTitle={payload.name}
+                headerSubtitle={payload.description}
+                cardAction={true}
+                cardActionChild={
+                    <>
+                        <Button
+                            onClick={handleClickDetail}
+                            startIcon={<InfoIcon/>}
+                        >
+                            Detail
+                        </Button>
 
-                <Divider variant="middle"/>
+                        <Box m={2}>
+                        </Box>
 
-                <CardActions className={classes.action}>
-                    <Button
-                        onClick={handleClickDetail}
-                        startIcon={<InfoIcon/>}
-                    >
-                        Detail
-                    </Button>
-
-                    <Box m={2}>
-                    </Box>
-
-                    <Button
-                        color="secondary"
-                        onClick={handleClick('bottom')}
-                        startIcon={<DeleteIcon/>}
-                    >
-                        Delete
-                    </Button>
-
-                </CardActions>
-            </Card>
+                        <Button
+                            color="secondary"
+                            onClick={handleClick('bottom')}
+                            startIcon={<DeleteIcon/>}
+                        >
+                            Delete
+                        </Button>
+                    </>
+                }
+            />
         </>
     )
 }
