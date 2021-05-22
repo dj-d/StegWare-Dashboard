@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import {
     AppBar,
-    FormControl,
     Grid,
     IconButton,
     List,
     ListItem,
     ListItemText,
-    MenuItem,
-    Select,
-    TextField,
-    Toolbar,
-    Typography
+    Toolbar
 } from "@material-ui/core";
 
 import Editor from "@monaco-editor/react"
-import { Button, Card } from "../../Wrappers/Wrappers";
+import { useForm, Form } from "../../useForm/useForm";
+import { Button, Card, Input, Select, Typography } from "../../Wrappers/Wrappers";
 
 // icons
 import {
@@ -26,15 +22,17 @@ import {
 
 // styles
 import useStyles from "./styles";
+import PayloadService from "../../../services/PayloadService";
+
+const resultTypeOptions = [
+    { id: "String", title: "String" },
+    { id: "JSON", title: "JSON" },
+    { id: "Image", title: "Image" },
+    { id: "Sound", title: "Sound" },
+]
 
 export default function Detail({ payload, ...props }) {
     const classes = useStyles();
-
-    const [returnType, setReturnType] = useState(payload.resultType)
-
-    const handleChangeReturnType = (event) => {
-        setReturnType(event.target.value);
-    }
 
     const [isEditMode, setEditMode] = useState(false);
 
@@ -48,21 +46,49 @@ export default function Detail({ payload, ...props }) {
         loading: "Loading..."
     }
 
+    function handleEditorChange(value) {
+        values.content = value;
+    }
+
+    function changeVisibility() {
+        props.changeVisibility();
+    }
+
+    function updatePayload(payloadID, payloadData) {
+        PayloadService.editPayload(payloadID, payloadData)
+            .then()
+            .catch()
+    }
+
+    const { values, errors, handleInputChange } = useForm(payload);
+    const handleSubmit = (e) => { // TODO: To complete
+        e.preventDefault();
+
+        console.log("MODIFICATO");
+        console.log(values)
+
+        // updatePayload(payload._id, values);
+
+        // Refresh page
+        // window.location.reload();
+    }
+
     const data = [
         {
             title: "Description",
             subheader:
-                <TextField
+                <Input
+                    name="description"
+                    value={values.description}
+                    onChange={handleInputChange}
+                    error={errors.description}
                     disabled={!isEditMode}
-                    id="Description"
-                    defaultValue={payload.description}
-                    variant="outlined"
                 />
         },
         {
             title: "Permissions", // TODO: Add edit mode
             subheader:
-                <List>
+                <List> {/* TODO: Add selector*/}
                     {payload.vulnerabilities.map(item => (
                         <ListItem>
                             <ListItemText primary={item}/>
@@ -73,109 +99,109 @@ export default function Detail({ payload, ...props }) {
         {
             title: "Return",
             subheader:
-                <FormControl variant="outlined">
-                    <Select
-                        disabled={!isEditMode}
-                        value={returnType}
-                        onChange={handleChangeReturnType}
-                    >
-                        <MenuItem value="String">String</MenuItem>
-                        <MenuItem value="JSON">JSON</MenuItem>
-                        <MenuItem value="Image">Image</MenuItem>
-                        <MenuItem value="Sound">Sound</MenuItem>
-                    </Select>
-                </FormControl>
+                <Select
+                    name="resultType"
+                    value={values.resultType}
+                    disabled={!isEditMode}
+                    onChange={handleInputChange}
+                    options={resultTypeOptions}
+                />
         },
         {
             title: "Executed",
-            subheader: <TextField
-                disabled={!isEditMode}
-                id="Executed"
-                defaultValue="()"
-                variant="outlined"
-            />
+            subheader:
+                <Input
+                    name="executed"
+                    value="()"
+                    onChange={handleInputChange}
+                    error={errors.executed}
+                    disabled={!isEditMode}
+                />
         }
     ];
 
-    function changeVisibility() {
-        props.changeVisibility();
-    }
-
     return (
         <>
-            <AppBar className={classes.appBar}>
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" onClick={changeVisibility} aria-label="Close">
-                        <CloseIcon/>
-                    </IconButton>
+            <Form onSubmit={handleSubmit}>
+                <AppBar className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" onClick={changeVisibility} aria-label="Close">
+                            <CloseIcon/>
+                        </IconButton>
 
-                    <TextField // TODO: Fix text color
-                        disabled={!isEditMode}
-                        id="title"
-                        defaultValue={payload.name}
-                        variant="outlined"
-                        className={classes.title}
-                        inputProps={{
-                            className: classes.textFiled
-                        }}
-                    />
-
-                    {!isEditMode ?
-                        <Button
-                            text="Edit"
-                            color="secondary"
-                            startIcon={<EditIcon/>}
-                            onClick={changeEditMode}
-                            className={classes.button}
+                        <Input // TODO: Fix color when edit mode is off
+                            name="name"
+                            value={values.name}
+                            onChange={handleInputChange}
+                            error={errors.name}
+                            disabled={!isEditMode}
+                            className={classes.title}
+                            inputProps={{
+                                className: classes.textFiled
+                            }}
                         />
-                        :
-                        <Button
-                            text="Save"
-                            startIcon={<SaveIcon/>}
-                            onClick={changeEditMode}
-                            className={classes.button}
-                        />
-                    }
 
-                </Toolbar>
-            </AppBar>
+                        {!isEditMode ?
+                            <Button
+                                type="submit"
+                                color="secondary"
+                                startIcon={<EditIcon/>}
+                                onClick={changeEditMode}
+                                className={classes.button}
+                            >
+                                Edit
+                            </Button>
+                            :
+                            <Button
+                                startIcon={<SaveIcon/>}
+                                onClick={changeEditMode}
+                                className={classes.button}
+                            >
+                                Save
+                            </Button>
+                        }
 
-            <Grid container spacing={4}>
-                {data.map(item => (
-                    <Grid key={payload.title} item lg={3} md={4} sm={6} xs={12}>
+                    </Toolbar>
+                </AppBar>
+
+                <Grid container spacing={4}>
+                    {data.map(item => (
+                        <Grid key={payload.title} item lg={3} md={4} sm={6} xs={12}>
+                            <Card
+                                cardHeader={true}
+                                headerTitle={item.title}
+                                headerSubtitle={item.subheader}
+                            />
+                        </Grid>
+                    ))}
+
+                    <Grid item xs={12}>
                         <Card
                             cardHeader={true}
-                            headerTitle={item.title}
-                            headerSubtitle={item.subheader}
+                            headerTitle="Code"
+                            cardContent={isEditMode}
+                            cardContentContent={
+                                <>
+                                    <Typography variant="h6">Be careful:</Typography>
+                                    <Typography>- Please use only /* Block comment */</Typography>
+                                    <Typography>- Please don't use nested class</Typography>
+                                    <Typography>- You can call another class in this code only using dynamic loading and
+                                        reflection</Typography>
+                                </>
+                            }
+                            other={
+                                <Editor
+                                    height="50vh" // TODO: To fix
+                                    language="java"
+                                    options={editorOptions}
+                                    value={values.content}
+                                    onChange={handleEditorChange}
+                                />
+                            }
                         />
                     </Grid>
-                ))}
-
-                <Grid item xs={12}>
-                    <Card
-                        cardHeader={true}
-                        headerTitle="Code"
-                        cardContent={isEditMode}
-                        cardContentContent={
-                            <>
-                                <Typography variant="h6">Be careful:</Typography>
-                                <Typography>- Please use only /* Block comment */</Typography>
-                                <Typography>- Please don't use nested class</Typography>
-                                <Typography>- You can call another class in this code only using dynamic loading and
-                                    reflection</Typography>
-                            </>
-                        }
-                        other={
-                            <Editor
-                                height="50vh" // TODO: To fix
-                                language="java"
-                                options={editorOptions}
-                                value={payload.content}
-                            />
-                        }
-                    />
                 </Grid>
-            </Grid>
+            </Form>
         </>
     )
 }
