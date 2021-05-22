@@ -29,19 +29,22 @@ export default function Delete({ ...props }) {
                 <Typography className={classes.title}>Are you sure?</Typography>
 
                 <Button
-                    text="No"
                     size="small"
                     onClick={changeVisibility}
                     className={classes.button}
-                />
+                >
+                    No
+                </Button>
 
                 <Button
-                    text="Yes"
+
                     size="small"
                     color="secondary"
                     onClick={deleteAction}
                     className={classes.button}
-                />
+                >
+                    Yes
+                </Button>
 
             </Paper>
         </>
