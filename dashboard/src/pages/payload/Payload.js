@@ -69,9 +69,10 @@ export default function Payload() {
                     title="Payloads"
                     button={
                         <Button
-                            text="Create new"
                             startIcon={<AddIcon/>}
-                        />
+                        >
+                            Create new
+                        </Button>
                     }/>
 
                 <Grid container spacing={4}>
