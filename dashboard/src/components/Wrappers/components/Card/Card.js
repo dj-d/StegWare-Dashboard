@@ -8,7 +8,7 @@ import {
 
 import useStyles from "./styles";
 
-export default function Card({ cardHeader = false, headerTitle, headerSubtitle, cardContent = false, cardContentContent, cardAction = false, other }) {
+export default function Card({ cardHeader = false, headerTitle, headerSubtitle, cardContent = false, cardContentContent, cardAction = false, cardActionChild, other }) {
     const classes = useStyles();
 
     return (
@@ -25,17 +25,15 @@ export default function Card({ cardHeader = false, headerTitle, headerSubtitle, 
                 />
             )}
 
-            {/* TODO: To complete */}
             {cardContent && (
                 <MuiCardContent className={classes.cardContent}>
                     {cardContentContent}
                 </MuiCardContent>
             )}
 
-            {/* TODO: To complete */}
             {cardAction && (
-                <MuiCardActionArea>
-
+                <MuiCardActionArea className={classes.cardAction}>
+                    {cardActionChild}
                 </MuiCardActionArea>
             )}
 

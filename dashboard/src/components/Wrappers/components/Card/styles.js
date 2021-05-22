@@ -29,5 +29,10 @@ export default makeStyles((theme) => ({
     cardContent: {
         margin: 5,
         marginLeft: theme.spacing(2)
+    },
+    cardAction: {
+        display: "flex",
+        justifyContent: "center",
+        marginBottom: theme.spacing(2)
     }
 }))
