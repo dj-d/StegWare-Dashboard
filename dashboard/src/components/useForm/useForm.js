@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import useStyles from "./styles"
 
-function useForm(initialValues, validateOnChange = false, validate) {
+function useForm(initialValues, validate, validateOnChange = false) {
     const [values, setValues] = useState(initialValues);
     const [errors, setErrors] = useState({});
 
