@@ -17,7 +17,6 @@ function useForm(initialValues, validateOnChange = false, validate) {
         if (validateOnChange) {
             validate({ [name]: value })
         }
-
     }
 
     const resetForm = () => {

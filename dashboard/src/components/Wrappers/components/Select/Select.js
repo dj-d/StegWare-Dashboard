@@ -7,18 +7,21 @@ import {
     FormHelperText
 } from "@material-ui/core";
 
-export default function Select({ name, label, value, error = null, onChange, options }) {
+export default function Select({ name, label, value, error = null, disabled, onChange, options }) {
     return (
         <FormControl
             variant="outlined"
             {...(error && { error: true })}
         >
-            <InputLabel>{label}</InputLabel>
+            <InputLabel>
+                {label}
+            </InputLabel>
 
             <MuiSelect
                 label={label}
                 name={name}
                 value={value}
+                disabled={disabled}
                 onChange={onChange}
             >
                 {/*<MenuItem value=""> None </MenuItem>*/}
