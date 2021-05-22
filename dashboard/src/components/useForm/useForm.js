@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import useStyles from "./styles"
 
-function useForm(initialFValues, validateOnChange = false, validate) {
-    const [values, setValues] = useState(initialFValues);
+function useForm(initialValues, validateOnChange = false, validate) {
+    const [values, setValues] = useState(initialValues);
     const [errors, setErrors] = useState({});
 
     const handleInputChange = (e) => {
@@ -21,7 +21,7 @@ function useForm(initialFValues, validateOnChange = false, validate) {
     }
 
     const resetForm = () => {
-        setValues(initialFValues);
+        setValues(initialValues);
         setErrors({})
     }
 
