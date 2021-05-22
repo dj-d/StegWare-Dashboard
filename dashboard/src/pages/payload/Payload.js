@@ -15,11 +15,7 @@ import {
     Add as AddIcon
 } from "@material-ui/icons";
 
-import useStyles from "./styles";
-
 export default function Payload() {
-    let classes = useStyles();
-
     const [errorPayload, setErrorPayload] = useState(null);
     const [isLoadedPayload, setIsLoadedPayload] = useState(false);
     const [payloads, setPayloads] = useState([]);

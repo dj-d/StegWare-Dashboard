@@ -5,13 +5,9 @@ import PayloadService from "../../services/PayloadService";
 
 import { Button } from "../../components/Wrappers/Wrappers";
 
-import useStyles from "./styles";
-
 import ImageUploader from "react-images-upload"
 
 export default function Steganography({ ...props }) {
-    let classes = useStyles();
-
     const [selectedPayload, setSelectedPayload] = useState("")
     const handleChangeSelectedPayload = (event) => {
         if (selectedPayload === "") {
