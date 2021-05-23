@@ -1,8 +1,6 @@
 import React, {useState} from "react";
-import {AppBar, Toolbar, IconButton, InputBase, Menu, MenuItem} from "@material-ui/core";
+import {AppBar, Toolbar, IconButton, InputBase, Menu, MenuItem, Typography} from "@material-ui/core";
 
-// components
-import {Typography} from "../Wrappers/Wrappers";
 
 // icons
 import {

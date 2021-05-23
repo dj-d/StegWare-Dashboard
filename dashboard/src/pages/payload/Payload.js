@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Skeleton from '@material-ui/lab/Skeleton';
+
+import { Button } from "../../components/Wrappers/Wrappers";
 
 // component
 import PageTitle from "../../components/PageTitle/PageTitle";
@@ -13,11 +15,7 @@ import {
     Add as AddIcon
 } from "@material-ui/icons";
 
-import useStyles from "./styles";
-
 export default function Payload() {
-    let classes = useStyles();
-
     const [errorPayload, setErrorPayload] = useState(null);
     const [isLoadedPayload, setIsLoadedPayload] = useState(false);
     const [payloads, setPayloads] = useState([]);
@@ -67,12 +65,9 @@ export default function Payload() {
                     title="Payloads"
                     button={
                         <Button
-                            variant="contained"
-                            color="primary"
                             startIcon={<AddIcon/>}
-                            className={classes.button}
                         >
-                            CREATE NEW
+                            Create new
                         </Button>
                     }/>
 

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import PageTitle from "../../components/PageTitle/PageTitle";
-import { Box, Button, FormControl, Grid, MenuItem, Paper, Select } from "@material-ui/core";
+import { Box, FormControl, Grid, MenuItem, Paper, Select } from "@material-ui/core";
 import PayloadService from "../../services/PayloadService";
 
-import useStyles from "./styles";
+import { Button } from "../../components/Wrappers/Wrappers";
 
 import ImageUploader from "react-images-upload"
 
 export default function Steganography({ ...props }) {
-    let classes = useStyles();
-
     const [selectedPayload, setSelectedPayload] = useState("")
     const handleChangeSelectedPayload = (event) => {
         if (selectedPayload === "") {
@@ -94,16 +92,16 @@ export default function Steganography({ ...props }) {
 
                             <Grid item>
                                 {pictures.length !== 0 && selectedPayload !== "" && (
-                                    <Button variant="outlined" onClick={changeIsImgEncoded}>
-                                        ENCODE
+                                    <Button onClick={changeIsImgEncoded}>
+                                        Encode
                                     </Button>
                                 )}
                             </Grid>
 
                             <Grid item>
                                 {pictures.length !== 0 && selectedPayload !== "" && isImgEncoded && (
-                                    <Button variant="outlined">
-                                        DOWNLOAD
+                                    <Button>
+                                        Download
                                     </Button>
                                 )}
                             </Grid>

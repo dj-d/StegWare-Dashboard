@@ -1,10 +1,10 @@
 import React from "react";
 
+import { Typography } from "../Wrappers/Wrappers";
+
 // styles
 import useStyles from "./styles";
 
-// components
-import {Typography} from "../Wrappers/Wrappers";
 
 export default function PageTitle(props) {
 	let classes = useStyles();

@@ -1,5 +1,7 @@
 import React from "react";
-import { Button, Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
+
+import { Button } from "../../Wrappers/Wrappers";
 
 // service
 import PayloadService from "../../../services/PayloadService";
@@ -26,12 +28,24 @@ export default function Delete({ ...props }) {
             <Paper className={classes.paper}>
                 <Typography className={classes.title}>Are you sure?</Typography>
 
-                <Button autoFocus onClick={changeVisibility} className={classes.buttonCancel}>
-                    NO
+                <Button
+                    size="small"
+                    onClick={changeVisibility}
+                    className={classes.button}
+                >
+                    No
                 </Button>
-                <Button onClick={deleteAction} className={classes.buttonContinue}>
-                    YES
+
+                <Button
+
+                    size="small"
+                    color="secondary"
+                    onClick={deleteAction}
+                    className={classes.button}
+                >
+                    Yes
                 </Button>
+
             </Paper>
         </>
     );

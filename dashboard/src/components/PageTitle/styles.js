@@ -8,6 +8,7 @@ export default makeStyles(theme => ({
     marginTop: theme.spacing(5),
   },
   typo: {
+    fontWeight: 400,
     color: theme.palette.text.hint,
   },
   button: {
