@@ -28,7 +28,8 @@ export default makeStyles((theme) => ({
     },
     cardContent: {
         margin: 5,
-        marginLeft: theme.spacing(2)
+        marginLeft: theme.spacing(2),
+        minWidth: "100%"
     },
     cardAction: {
         display: "flex",

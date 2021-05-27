@@ -13,5 +13,12 @@ export default makeStyles(theme => ({
     },
     button: {
         boxShadow: "0px 3px 3px -2px #000000"
+    },
+    chips: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    chip: {
+        margin: 2,
     }
 }))

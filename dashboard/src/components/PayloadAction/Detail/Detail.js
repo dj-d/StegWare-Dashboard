@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import {
     AppBar,
+    Chip,
     Grid,
     IconButton,
-    List,
-    ListItem,
-    ListItemText,
+    Input as MuiInput,
     Toolbar
 } from "@material-ui/core";
 
@@ -23,6 +22,8 @@ import {
 // styles
 import useStyles from "./styles";
 import PayloadService from "../../../services/PayloadService";
+
+import permissions from "../../../static/mocks/permissions";
 
 const resultTypeOptions = [
     { id: "String", title: "String" },
@@ -88,13 +89,22 @@ export default function Detail({ payload, ...props }) {
         {
             title: "Permissions", // TODO: Add edit mode
             subheader:
-                <List> {/* TODO: Add selector*/}
-                    {payload.vulnerabilities.map(item => (
-                        <ListItem>
-                            <ListItemText primary={item}/>
-                        </ListItem>
-                    ))}
-                </List>
+                <Select
+                    name="vulnerabilities"
+                    value={values.vulnerabilities}
+                    disabled={!isEditMode}
+                    input={<MuiInput id="select-multiple-chip" />}
+                    onChange={handleInputChange}
+                    options={permissions}
+                    multiple={true}
+                    renderValue={(selected) => (
+                        <div className={classes.chips}>
+                            {selected.map((value) => (
+                                <Chip key={value} label={value} className={classes.chip} />
+                            ))}
+                        </div>
+                    )}
+                />
         },
         {
             title: "Return",
@@ -170,7 +180,8 @@ export default function Detail({ payload, ...props }) {
                             <Card
                                 cardHeader={true}
                                 headerTitle={item.title}
-                                headerSubtitle={item.subheader}
+                                cardContent={true}
+                                cardContentContent={item.subheader}
                             />
                         </Grid>
                     ))}
