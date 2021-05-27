@@ -32,7 +32,7 @@ const resultTypeOptions = [
     { id: "Sound", title: "Sound" },
 ]
 
-export default function Detail({ payload, ...props }) {
+export default function Detail({ payload, createMode = false, ...props }) {
     const classes = useStyles();
 
     const [isEditMode, setEditMode] = useState(false);
@@ -55,10 +55,26 @@ export default function Detail({ payload, ...props }) {
         props.changeVisibility();
     }
 
+    // TODO: To complete
+    function addPayload(payload) {
+        PayloadService.createPayload(payload)
+            .then()
+            .catch()
+            .finally(() => {
+                // Refresh page
+                window.location.reload();
+            })
+    }
+
+    // TODO: To complete
     function updatePayload(payloadID, payloadData) {
         PayloadService.editPayload(payloadID, payloadData)
             .then()
             .catch()
+            .finally(() => {
+                // Refresh page
+                window.location.reload();
+            })
     }
 
     const { values, errors, handleInputChange } = useForm(payload);
@@ -68,10 +84,11 @@ export default function Detail({ payload, ...props }) {
         console.log("MODIFICATO");
         console.log(values)
 
-        // updatePayload(payload._id, values);
-
-        // Refresh page
-        // window.location.reload();
+        if (createMode) {
+            addPayload(values)
+        } else {
+            updatePayload(payload._id, values);
+        }
     }
 
     const data = [
