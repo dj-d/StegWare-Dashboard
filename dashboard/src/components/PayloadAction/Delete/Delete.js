@@ -16,11 +16,15 @@ export default function Delete({ ...props }) {
         props.changeVisibility(event.target.value);
     }
 
+    // TODO: To complete
     function deleteAction() {
         PayloadService.deletePayload(props.payloadID)
             .then()
             .catch()
-            .finally()
+            .finally(() => {
+                // Refresh page
+                window.location.reload();
+        })
     }
 
     return (
