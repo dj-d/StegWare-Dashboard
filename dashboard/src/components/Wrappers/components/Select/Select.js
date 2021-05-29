@@ -31,10 +31,10 @@ export default function Select({ name, label, value, multiple, input, renderValu
 
                 {options.map((item) => (
                         <MenuItem
-                            key={item.id}
-                            value={item.id}
+                            key={item.id || item._id}
+                            value={item.id || item.content}
                         >
-                            {item.title}
+                            {item.title || item.name}
                         </MenuItem>
                     )
                 )}
