@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import {
     AppBar,
+    Chip,
     Grid,
     IconButton,
-    List,
-    ListItem,
-    ListItemText,
+    Input as MuiInput,
     Toolbar
 } from "@material-ui/core";
 
@@ -24,6 +23,8 @@ import {
 import useStyles from "./styles";
 import PayloadService from "../../../services/PayloadService";
 
+import permissions from "../../../static/mocks/permissions";
+
 const resultTypeOptions = [
     { id: "String", title: "String" },
     { id: "JSON", title: "JSON" },
@@ -31,7 +32,7 @@ const resultTypeOptions = [
     { id: "Sound", title: "Sound" },
 ]
 
-export default function Detail({ payload, ...props }) {
+export default function Detail({ payload, createMode = false, ...props }) {
     const classes = useStyles();
 
     const [isEditMode, setEditMode] = useState(false);
@@ -54,10 +55,26 @@ export default function Detail({ payload, ...props }) {
         props.changeVisibility();
     }
 
+    // TODO: To complete
+    function addPayload(payload) {
+        PayloadService.createPayload(payload)
+            .then()
+            .catch()
+            .finally(() => {
+                // Refresh page
+                window.location.reload();
+            })
+    }
+
+    // TODO: To complete
     function updatePayload(payloadID, payloadData) {
         PayloadService.editPayload(payloadID, payloadData)
             .then()
             .catch()
+            .finally(() => {
+                // Refresh page
+                window.location.reload();
+            })
     }
 
     const { values, errors, handleInputChange } = useForm(payload);
@@ -67,10 +84,11 @@ export default function Detail({ payload, ...props }) {
         console.log("MODIFICATO");
         console.log(values)
 
-        // updatePayload(payload._id, values);
-
-        // Refresh page
-        // window.location.reload();
+        if (createMode) {
+            addPayload(values)
+        } else {
+            updatePayload(payload._id, values);
+        }
     }
 
     const data = [
@@ -88,13 +106,22 @@ export default function Detail({ payload, ...props }) {
         {
             title: "Permissions", // TODO: Add edit mode
             subheader:
-                <List> {/* TODO: Add selector*/}
-                    {payload.vulnerabilities.map(item => (
-                        <ListItem>
-                            <ListItemText primary={item}/>
-                        </ListItem>
-                    ))}
-                </List>
+                <Select
+                    name="vulnerabilities"
+                    value={values.vulnerabilities}
+                    disabled={!isEditMode}
+                    input={<MuiInput id="select-multiple-chip" />}
+                    onChange={handleInputChange}
+                    options={permissions}
+                    multiple={true}
+                    renderValue={(selected) => (
+                        <div className={classes.chips}>
+                            {selected.map((value) => (
+                                <Chip key={value} label={value} className={classes.chip} />
+                            ))}
+                        </div>
+                    )}
+                />
         },
         {
             title: "Return",
@@ -170,7 +197,8 @@ export default function Detail({ payload, ...props }) {
                             <Card
                                 cardHeader={true}
                                 headerTitle={item.title}
-                                headerSubtitle={item.subheader}
+                                cardContent={true}
+                                cardContentContent={item.subheader}
                             />
                         </Grid>
                     ))}

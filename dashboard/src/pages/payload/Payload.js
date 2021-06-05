@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Grid } from "@material-ui/core";
+import React, { forwardRef, useEffect, useState } from "react";
+import { Dialog, Grid, Slide } from "@material-ui/core";
 import Skeleton from '@material-ui/lab/Skeleton';
 
 import { Button } from "../../components/Wrappers/Wrappers";
+
+import defaultPayload from "../../static/mocks/defaultPayload";
 
 // component
 import PageTitle from "../../components/PageTitle/PageTitle";
@@ -14,6 +16,11 @@ import PayloadService from "../../services/PayloadService";
 import {
     Add as AddIcon
 } from "@material-ui/icons";
+import Detail from "../../components/PayloadAction/Detail/Detail";
+
+const TransitionDialog = forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+})
 
 export default function Payload() {
     const [errorPayload, setErrorPayload] = useState(null);
@@ -36,6 +43,12 @@ export default function Payload() {
                 setErrorPayload(error);
             })
     }, []);
+
+    const [openCreate, setOpenCreate] = useState(false);
+
+    const handleClickCreate = () => {
+        setOpenCreate(!openCreate);
+    }
 
     // TODO: To improve error and isLoaded
     if (errorPayload) {
@@ -61,11 +74,16 @@ export default function Payload() {
     } else {
         return (
             <>
+                <Dialog fullScreen open={openCreate} onClose={handleClickCreate} TransitionComponent={TransitionDialog}>
+                    <Detail payload={defaultPayload} createMode={true} changeVisibility={handleClickCreate} />
+                </Dialog>
+
                 <PageTitle
                     title="Payloads"
                     button={
                         <Button
                             startIcon={<AddIcon/>}
+                            onClick={handleClickCreate}
                         >
                             Create new
                         </Button>
