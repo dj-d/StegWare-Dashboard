@@ -47,12 +47,12 @@ const structure = [
         link: "/app/attack",
         icon: <AttacksIcon/>
     },
-    {
-        id: 4,
-        label: "Infected devices",
-        link: "/app/infectedDevice",
-        icon: <InfectedDevicesIcon/>
-    },
+    // {
+    //     id: 4,
+    //     label: "Infected devices",
+    //     link: "/app/infectedDevice",
+    //     icon: <InfectedDevicesIcon/>
+    // },
     {
         id: 5,
         label: "Team",
