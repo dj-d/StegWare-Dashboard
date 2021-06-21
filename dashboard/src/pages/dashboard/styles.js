@@ -6,5 +6,13 @@ export default makeStyles(theme => ({
     borderRadius: 10,
     boxShadow: theme.customShadows.widget,
     minHeight: "100%"
+  },
+
+  cardMedia: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 20,
+    maxWidth: "50%",
+    maxHeight: "50%"
   }
 }));
