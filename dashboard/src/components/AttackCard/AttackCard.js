@@ -14,15 +14,14 @@ export default function AttackCard({ attack }) {
     const [payloadName, setPayloadName] = useState(null)
 
     const data = [
-        "Download time: " + attack.timing.download_time,
-        "Parse time: " + attack.timing.parse_time,
-        "Compile time: " + attack.timing.compile_time,
-        "Dynamic loading time: " + attack.timing.dynamic_loading_time,
-        "Execution time: " + attack.timing.execution_time
+        "Parse time: " + attack.timing.parseTime,
+        "Compile time: " + attack.timing.compileTime,
+        "Dynamic loading time: " + attack.timing.dynamicLoadingTime,
+        "Execution time: " + attack.timing.executionTime
     ];
 
     useEffect(() => {
-        PayloadService.fetchPayload(attack.payload_id)
+        PayloadService.fetchPayload(attack.payloadId)
             .then((res) => {
                 setPayloadName(res.data.name);
             })
