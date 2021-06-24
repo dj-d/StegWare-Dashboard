@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  dashboard:
+    container_name: StegWare-Dashboard
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app/
