@@ -11,3 +11,9 @@ services:
       - "3000:3000"
     volumes:
       - .:/usr/src/app/
+    networks:
+      - stegware-net
+
+networks:
+  stegware-net:
+    driver: bridge
