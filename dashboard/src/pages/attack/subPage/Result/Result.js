@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+// components
+import Editor from "@monaco-editor/react";
+import { Button, Card, Typography } from "../../../../components/Wrappers/Wrappers";
 
 // icons
 import {
@@ -20,8 +24,16 @@ import {
     ListItemText,
     Toolbar
 } from "@material-ui/core";
-import { Button, Card, Typography } from "../../../../components/Wrappers/Wrappers";
+
+// services
 import AttackService from "../../../../services/AttackService";
+import PayloadService from "../../../../services/PayloadService";
+
+const editorOptions = {
+    readOnly: true,
+    theme: "vs",
+    loading: "Loading..."
+}
 
 export default function Result({ attack, ...props }) {
     const classes = useStyles();
@@ -65,12 +77,21 @@ export default function Result({ attack, ...props }) {
         }
     ]
 
+    const [payload, setPayload] = useState("");
+
+    useEffect(() => {
+        PayloadService.fetchPayload(attack.payloadId)
+            .then((res) => {
+                setPayload(res.data);
+            })
+            .catch((error) => {
+                setPayload("");
+            })
+    }, []);
+
     return (
         <>
-            <Dialog
-                open={openDelete}
-                onClose={handleClickOpenDelete}
-            >
+            <Dialog open={openDelete} onClose={handleClickOpenDelete} >
                 <DialogTitle
                     className={classes.dialog}
                 >
@@ -176,6 +197,21 @@ export default function Result({ attack, ...props }) {
                         headerSubtitle={"Result type: " + attack.resultType}
                         cardContent={true}
                         cardContentContent={attack.result}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Card
+                        cardHeader={true}
+                        headerTitle="Used Payload"
+                        headerSubtitle={payload.name}
+                        other={
+                            <Editor
+                                height="50vh"
+                                language="java"
+                                options={editorOptions}
+                                value={payload.content}
+                            />
+                        }
                     />
                 </Grid>
             </Grid>
