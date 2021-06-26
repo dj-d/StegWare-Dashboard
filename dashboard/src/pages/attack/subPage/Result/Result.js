@@ -105,6 +105,15 @@ export default function Result({ attack, ...props }) {
                         }
                     />
                 </Grid>
+                <Grid item lg={3} md={4} sm={6} xs={12}>
+                    <Card
+                        cardHeader={true}
+                        headerTitle={"Result"}
+                        headerSubtitle={"Result type: " + attack.resultType}
+                        cardContent={true}
+                        cardContentContent={attack.result}
+                    />
+                </Grid>
             </Grid>
         </>
     )
