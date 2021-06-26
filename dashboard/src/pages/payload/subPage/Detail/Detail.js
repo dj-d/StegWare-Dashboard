@@ -9,8 +9,8 @@ import {
 } from "@material-ui/core";
 
 import Editor from "@monaco-editor/react"
-import { useForm, Form } from "../../useForm/useForm";
-import { Button, Card, Input, Select, Typography } from "../../Wrappers/Wrappers";
+import { useForm, Form } from "../../../../components/useForm/useForm";
+import { Button, Card, Input, Select, Typography } from "../../../../components/Wrappers/Wrappers";
 
 // icons
 import {
@@ -21,9 +21,9 @@ import {
 
 // styles
 import useStyles from "./styles";
-import PayloadService from "../../../services/PayloadService";
+import PayloadService from "../../../../services/PayloadService";
 
-import permissions from "../../../static/mocks/permissions";
+import permissions from "../../../../static/mocks/permissions";
 
 const resultTypeOptions = [
     { id: "String", title: "String" },
