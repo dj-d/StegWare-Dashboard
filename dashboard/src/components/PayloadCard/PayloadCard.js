@@ -6,8 +6,8 @@ import {
     Slide
 } from "@material-ui/core";
 
-import Detail from "../PayloadAction/Detail/Detail";
-import Delete from "../PayloadAction/Delete/Delete";
+import Detail from "../../pages/payload/subPage/Detail/Detail";
+import Delete from "../Action/Delete/Delete";
 
 import { Button, Card } from "../../components/Wrappers/Wrappers";
 
@@ -49,7 +49,7 @@ export default function PayloadCard({ payload }) {
             </Dialog>
 
             <Popper open={openDelete} anchorEl={anchorEl} placement={placement} disablePortal={true}>
-                <Delete changeVisibility={changeDeleteVisibility} payloadID={payload._id}/>
+                <Delete changeVisibility={changeDeleteVisibility} payloadId={payload._id} collection="payload"/>
             </Popper>
 
             <Card

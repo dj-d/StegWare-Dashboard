@@ -16,7 +16,7 @@ import PayloadService from "../../services/PayloadService";
 import {
     Add as AddIcon
 } from "@material-ui/icons";
-import Detail from "../../components/PayloadAction/Detail/Detail";
+import Detail from "./subPage/Detail/Detail";
 
 const TransitionDialog = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
