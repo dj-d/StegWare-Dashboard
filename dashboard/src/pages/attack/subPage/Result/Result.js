@@ -1,21 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 
 // icons
 import {
     Close as CloseIcon,
-    ArrowRight as ArrowRightIcon
+    ArrowRight as ArrowRightIcon,
+    Delete as DeleteIcon
 } from "@material-ui/icons";
 
 // styles
 import useStyles from "./styles";
-import { AppBar, Grid, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar } from "@material-ui/core";
-import { Card, Typography } from "../../../../components/Wrappers/Wrappers";
+import {
+    AppBar,
+    Dialog, DialogActions, DialogTitle,
+    Grid,
+    IconButton,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Toolbar
+} from "@material-ui/core";
+import { Button, Card, Typography } from "../../../../components/Wrappers/Wrappers";
+import AttackService from "../../../../services/AttackService";
 
 export default function Result({ attack, ...props }) {
     const classes = useStyles();
 
+    const [openDelete, setOpenDelete] = useState(false);
+
+    const handleClickOpenDelete = () => {
+        setOpenDelete(!openDelete)
+    }
+
     function changeVisibility() {
         props.changeVisibility();
+    }
+
+    function deleteAction() {
+        AttackService.deleteAttack(attack._id)
+            .then()
+            .catch()
+            .finally(() => {
+                    window.location.reload();
+                }
+            )
     }
 
     const timing = [
@@ -39,6 +67,33 @@ export default function Result({ attack, ...props }) {
 
     return (
         <>
+            <Dialog
+                open={openDelete}
+                onClose={handleClickOpenDelete}
+            >
+                <DialogTitle
+                    className={classes.dialog}
+                >
+                    Are you sure?
+                </DialogTitle>
+                <DialogActions>
+                    <Button
+                        color="secondary"
+                        onClick={handleClickOpenDelete}
+                        className={classes.button}
+                    >
+                        No
+                    </Button>
+
+                    <Button
+                        onClick={deleteAction}
+                        className={classes.button}
+                    >
+                        Yes
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
             <AppBar className={classes.appBar}>
                 <Toolbar>
                     <IconButton edge="start" color="inherit" onClick={changeVisibility} aria-label="Close">
@@ -50,6 +105,15 @@ export default function Result({ attack, ...props }) {
                     >
                         Attack Result
                     </Typography>
+
+                    <Button
+                        color="secondary"
+                        startIcon={<DeleteIcon/>}
+                        onClick={handleClickOpenDelete}
+                        className={classes.button}
+                    >
+                        Delete
+                    </Button>
                 </Toolbar>
             </AppBar>
 
