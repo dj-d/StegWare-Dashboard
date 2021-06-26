@@ -1,11 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { Button, Card, Typography } from "../Wrappers/Wrappers";
-import { Popper} from "@material-ui/core";
+import { Dialog, Popper, Slide } from "@material-ui/core";
+
+// components
+import Delete from "../Action/Delete/Delete";
+import Result from "../../pages/attack/subPage/Result/Result";
 
 // icons
-import { Delete as DeleteIcon, Info as InfoIcon } from "@material-ui/icons";
+import {
+    Delete as DeleteIcon,
+    Info as InfoIcon
+} from "@material-ui/icons";
+
+// service
 import PayloadService from "../../services/PayloadService";
-import Delete from "../Action/Delete/Delete";
+
+const TransitionDialog = forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+})
 
 export default function AttackCard({ attack }) {
     const [payloadName, setPayloadName] = useState(null);
@@ -59,6 +71,10 @@ export default function AttackCard({ attack }) {
 
     return (
         <>
+            <Dialog fullScreen open={openResult} onClose={handleClickResult} TransitionComponent={TransitionDialog}>
+                <Result attack={attack} attackDate={attackDate} changeVisibility={handleClickResult} />
+            </Dialog>
+
             <Popper open={openDelete} anchorEl={anchorEl} placement={placement} disablePortal={true}>
                 <Delete changeVisibility={changeDeleteVisibility} attackId={attack._id} collection="attack"/>
             </Popper>
@@ -84,6 +100,7 @@ export default function AttackCard({ attack }) {
                     <>
                         <Button
                             color="primary"
+                            onClick={handleClickResult}
                             startIcon={<InfoIcon/>}
                         >
                             Results
