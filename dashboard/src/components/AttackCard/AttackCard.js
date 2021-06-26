@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Typography } from "../Wrappers/Wrappers";
-import { List, ListItem, ListItemIcon, ListItemText, Popper } from "@material-ui/core";
+import { Popper} from "@material-ui/core";
 
 // icons
-import {
-    FiberManualRecord as DotIcon,
-    Info as InfoIcon,
-    Delete as DeleteIcon
-} from "@material-ui/icons";
+import { Delete as DeleteIcon, Info as InfoIcon } from "@material-ui/icons";
 import PayloadService from "../../services/PayloadService";
 import Delete from "../Action/Delete/Delete";
 
 export default function AttackCard({ attack }) {
-    const [payloadName, setPayloadName] = useState(null)
+    const [payloadName, setPayloadName] = useState(null);
+    const [attackDate, setAttackDate] = useState(null);
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [placement, setPlacement] = useState();
@@ -34,12 +31,19 @@ export default function AttackCard({ attack }) {
         setOpenDelete(newValue);
     }
 
-    const data = [
-        "Parse time: " + attack.timing.parseTime,
-        "Compile time: " + attack.timing.compileTime,
-        "Dynamic loading time: " + attack.timing.dynamicLoadingTime,
-        "Execution time: " + attack.timing.executionTime
-    ];
+    function timeConverter(){
+        let a = new Date(attack.timestamp * 1000);
+
+        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let year = a.getFullYear();
+        let month = months[a.getMonth()];
+        let date = a.getDate();
+        let hour = a.getHours();
+        let min = a.getMinutes();
+        let sec = a.getSeconds();
+
+        setAttackDate(date + ' ' + month + ' ' + year + ' - ' + hour + ':' + min + ':' + sec);
+    }
 
     useEffect(() => {
         PayloadService.fetchPayload(attack.payloadId)
@@ -49,6 +53,8 @@ export default function AttackCard({ attack }) {
             .catch((error) => {
                 console.log("Error: " + error);
             })
+
+        timeConverter()
     }, [attack.payload_id]);
 
     return (
@@ -63,26 +69,14 @@ export default function AttackCard({ attack }) {
                 headerSubtitle={
                     <>
                         <Typography>
-                            API: {attack.device.api}
+                            <b>API</b>: {attack.device.api}
                         </Typography>
                         <Typography>
-                            Payload: {payloadName}
+                            <b>Payload</b>: {payloadName}
                         </Typography>
-                    </>
-                }
-                cardContent={true}
-                cardContentContent={
-                    <>
-                        <List component="nav" aria-label="timing">
-                            {data.map(item => (
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <DotIcon/>
-                                    </ListItemIcon>
-                                    <ListItemText primary={item}/>
-                                </ListItem>
-                            ))}
-                        </List>
+                        <Typography>
+                            <b>Date</b>: {attackDate}
+                        </Typography>
                     </>
                 }
                 cardAction={true}
